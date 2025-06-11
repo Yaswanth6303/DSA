@@ -1,6 +1,10 @@
 package fundamentals;
 
 public class LeftRotateArrayByK_6 {
+    /**
+     * Time Complexity -> O(n - k) + O(k) = O(n)
+     * Space Complexity -> O(n)
+     */
     public int[] rotateArrayBrute_1(int[] nums, int k) {
         int n = nums.length;
         k = k % n;
@@ -16,6 +20,10 @@ public class LeftRotateArrayByK_6 {
 
         return rotatedArray;
     }
+    /**
+     * Time Complexity -> O(k) + O(n-k) + O(k) = O(n+k)
+     * Space Complexity -> O(k)
+     */
     public void rotateArrayBrute_2(int[] nums, int k) {
         int n = nums.length;
         k = k % n;
@@ -47,7 +55,10 @@ public class LeftRotateArrayByK_6 {
             end--;
         }
     }
-
+    /**
+     * Time Complexity -> O(k) + O(n - k) + O(n) = O(2n)
+     * Space Complexity -> O(1)
+     */
     public void rotateArrayOptimal(int[] nums, int k) {
         int n = nums.length;
         k = k % n;
@@ -61,6 +72,7 @@ public class LeftRotateArrayByK_6 {
         LeftRotateArrayByK_6 leftRotateArrayByK6 = new LeftRotateArrayByK_6();
         int[] nums = {1, 2, 3, 4, 5, 6, 7};
         int k = 3;
+
         int[] rotateArrayBrute_1 = leftRotateArrayByK6.rotateArrayBrute_1(nums, k);
         System.out.print("Rotate Array Brute: ");
         HelperMethods.printArray(rotateArrayBrute_1);

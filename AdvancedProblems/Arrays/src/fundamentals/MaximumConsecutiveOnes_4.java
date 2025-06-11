@@ -1,6 +1,10 @@
 package fundamentals;
 
 public class MaximumConsecutiveOnes_4 {
+    /**
+     * Time Complexity -> O(n)
+     * Space Complexity -> O(1)
+     */
     public int maxConsecutiveOnes(int[] nums) {
         int n = nums.length;
         int maxCount = 0;
@@ -18,7 +22,8 @@ public class MaximumConsecutiveOnes_4 {
     }
     public static void main(String[] args) {
         MaximumConsecutiveOnes_4 maximumConsecutiveOnes4 = new MaximumConsecutiveOnes_4();
-        int[] nums = {1, 1, 0, 0, 1, 1, 1, 0};
+        int[] nums = {1, 1, 0, 1, 1, 1, 0, 1, 1};
+
         int maxOnes = maximumConsecutiveOnes4.maxConsecutiveOnes(nums);
         System.out.print("Maximum ones in the array is: ");
         System.out.println(maxOnes);

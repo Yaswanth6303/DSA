@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LinearSearch_1 {
+    /**
+     * Time Complexity -> O(n)
+     * Space Complexity -> O(1)
+     */
     public int linearSearch(int[] nums, int target) {
         int n = nums.length;
         for(int i = 0; i < n; i++) {
@@ -14,6 +18,10 @@ public class LinearSearch_1 {
 
         return -1;
     }
+    /**
+     * Time Complexity -> O(n)
+     * Space Complexity -> O(n)
+     */
     public int[] linearSearchAllElements(int[] nums, int target) {
         List<Integer> targetList = new ArrayList<>();
         int n = nums.length;

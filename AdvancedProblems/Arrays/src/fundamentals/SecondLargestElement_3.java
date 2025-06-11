@@ -3,6 +3,10 @@ package fundamentals;
 import java.util.Arrays;
 
 public class SecondLargestElement_3 {
+    /**
+     * Time Complexity -> O(n * log n)
+     * Space Complexity -> O(1)
+     */
     public int secondLargestElementBrute(int[] nums) {
         int n = nums.length;
         Arrays.sort(nums);
@@ -19,6 +23,10 @@ public class SecondLargestElement_3 {
 
         return secondLargestElement;
     }
+    /**
+     * Time Complexity -> O(n) + O(n) = O(2n)
+     * Space Complexity -> O(1)
+     */
     public int secondLargestElementBetter(int[] nums) {
         int n = nums.length;
         if (n < 2) {
@@ -42,6 +50,10 @@ public class SecondLargestElement_3 {
 
         return secondLargest == Integer.MIN_VALUE ? -1 : secondLargest;
     }
+    /**
+     * Time Complexity -> O(n)
+     * Space Complexity -> O(1)
+     */
     public int secondLargestElementOptimal(int[] nums) {
         int n = nums.length;
 
@@ -62,12 +74,15 @@ public class SecondLargestElement_3 {
     public static void main(String[] args) {
         SecondLargestElement_3 secondLargestElement = new SecondLargestElement_3();
         int[] nums = {8, 8, 7, 6, 5};
+
         int secondLargestElementBrute = secondLargestElement.secondLargestElementBrute(nums);
         System.out.print("Second Largest Element(Brute): ");
         System.out.println(secondLargestElementBrute);
+
         int secondLargestElementBetter = secondLargestElement.secondLargestElementBetter(nums.clone());
         System.out.print("Second Largest Element(Better): ");
         System.out.println(secondLargestElementBetter);
+
         int secondLargestElementOptimal = secondLargestElement.secondLargestElementOptimal(nums.clone());
         System.out.print("Second Largest Element(Optimal): ");
         System.out.println(secondLargestElementOptimal);

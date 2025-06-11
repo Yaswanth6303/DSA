@@ -4,6 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MajorityConsecutiveOnes2_7 {
+    /**
+     * Time Complexity:
+     * -> O(n) to find all 0 indices and store in zeroIndices list
+     * -> For each 0 (let's say there are k zeros):
+     *      - O(n) to clone the array
+     *      - O(n) to compute max consecutive ones after flipping
+     * -> So total time = O(n) + k * (O(n) + O(n)) = O(n) + O(k * 2n) = O(n + 2kn) = O(kn)
+     *
+     * Space Complexity:
+     * -> O(k) for storing zeroIndices
+     * -> O(n) for cloned array in each iteration (not cumulative since reused)
+     * -> So overall auxiliary space = O(k + n)
+     */
     public int findMaxConsecutiveOnesBrute(int[] nums) {
         int n = nums.length;
         int maxOnes = 0;
@@ -40,6 +53,10 @@ public class MajorityConsecutiveOnes2_7 {
 
         return maxOnes;
     }
+    /**
+     * Time Complexity -> O(n)
+     * Space Complexity -> O(1)
+     */
     public int findMaxConsecutiveOnesOptimal(int[] nums) {
         int maxConsecutiveOnes = 0;
         int zeroCount = 0;
@@ -67,8 +84,9 @@ public class MajorityConsecutiveOnes2_7 {
         return maxConsecutiveOnes;
     }
     public static void main(String[] args) {
-        int[] nums = {1, 0, 1, 1, 0};
         MajorityConsecutiveOnes2_7 solver = new MajorityConsecutiveOnes2_7();
+        int[] nums = {1, 0, 1, 1, 0};
+
         System.out.print("Max Consecutive Ones Brute: ");
         int maxConsecutiveOnesBrute = solver.findMaxConsecutiveOnesBrute(nums);
         System.out.println(maxConsecutiveOnesBrute);
