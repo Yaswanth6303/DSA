@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.Set;
 
 public class UnionArray_4 {
+    /**
+     * Time Complexity -> O((m + n)log(m + n))
+     * Space Complexity -> O(m + n)
+     */
     public int[] unionArrayBrute(int[] nums1, int[] nums2) {
         Set<Integer> set = new HashSet<>();
 
@@ -27,6 +31,10 @@ public class UnionArray_4 {
 
         return unionArray;
     }
+    /**
+     * Time Complexity -> O(m + n)
+     * Space Complexity -> O(m + n)
+     */
     public int[] unionArrayOptimal(int[] nums1, int[] nums2) {
         List<Integer> unionList = new ArrayList<>();
         int n1 = nums1.length;
@@ -71,14 +79,14 @@ public class UnionArray_4 {
     }
     public static void main(String[] args) {
         UnionArray_4 unionArray4 = new UnionArray_4();
-        int[] nums1 = {1, 2, 3, 4};
-        int[] nums2 = {5, 6, 7, 8};
+        int[] nums1 = {1, 1, 2, 3, 4};
+        int[] nums2 = {2, 3, 4, 4, 5, 6};
 
         int[] unionArrayBrute = unionArray4.unionArrayBrute(nums1, nums2);
         System.out.print("Union Array Brute: ");
         HelperMethods.printArray(unionArrayBrute);
 
-        int[] unionArrayOptimal = unionArray4.unionArrayOptimal(nums1, nums2);
+        int[] unionArrayOptimal = unionArray4.unionArrayOptimal(nums1.clone(), nums2.clone());
         System.out.print("Union Array Optimal: ");
         HelperMethods.printArray(unionArrayOptimal);
     }

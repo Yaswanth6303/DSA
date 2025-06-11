@@ -3,6 +3,10 @@ package logicBuilding;
 import fundamentals.HelperMethods;
 
 public class MoveZerosEnd_1 {
+    /**
+     * Time Complexity -> O(2n)
+     * Space Complexity -> O(n)
+     */
     public void moveZerosBrute(int[] nums) {
         int n = nums.length;
 
@@ -23,6 +27,10 @@ public class MoveZerosEnd_1 {
             nums[i] = 0;
         }
     }
+    /**
+     * Time Complexity -> O(n)
+     * Space Complexity -> O(1)
+     */
     public void moveZerosOptimal(int[] nums) {
         int n = nums.length;
         int j = 0;
@@ -42,7 +50,8 @@ public class MoveZerosEnd_1 {
 
     public static void main(String[] args) {
         MoveZerosEnd_1 moveZerosEnd1 = new MoveZerosEnd_1();
-        int[] nums = {0, 1, 4, 0, 5, 2};
+        int[] nums = {1, 0, 2, 3, 2, 0, 0, 4, 5, 1};
+
         moveZerosEnd1.moveZerosBrute(nums);
         System.out.println("Move Zeros Brute: ");
         HelperMethods.printArray(nums);

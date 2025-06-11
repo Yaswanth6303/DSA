@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IntersectionArray_5 {
+    /**
+     * Time Complexity -> O(n * m)
+     * Space Complexity -> O(n)
+     */
     public int[] intersectionArrayBrute(int[] nums1, int[] nums2) {
         List<Integer> intersectionList = new ArrayList<>();
         int n1 = nums1.length;
@@ -31,6 +35,10 @@ public class IntersectionArray_5 {
 
         return intersectionArray;
     }
+    /**
+     * Time Complexity -> O(m + n)
+     * Space Complexity -> O(1)
+     */
     public int[] intersectionArrayOptimal(int[] nums1, int[] nums2) {
         List<Integer> intersectionList = new ArrayList<>();
         int n1 = nums1.length;
@@ -59,8 +67,9 @@ public class IntersectionArray_5 {
     }
     public static void main(String[] args) {
         IntersectionArray_5 intersectionArray5 = new IntersectionArray_5();
-        int[] nums1 = {1, 2, 3, 4, 5};
-        int[] nums2 = {1, 4, 5, 6, 7, 8};
+        int[] nums1 = {1, 2, 2, 3, 3, 4, 5, 6};
+        int[] nums2 = {2, 3, 3, 5, 6, 6, 7};
+
         int[] intersectionArrayBrute = intersectionArray5.intersectionArrayBrute(nums1, nums2);
         System.out.print("Intersection Array Brute: ");
         HelperMethods.printArray(intersectionArrayBrute);

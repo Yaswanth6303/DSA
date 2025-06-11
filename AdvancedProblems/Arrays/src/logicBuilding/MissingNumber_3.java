@@ -1,6 +1,10 @@
 package logicBuilding;
 
 public class MissingNumber_3 {
+    /**
+     * Time Complexity -> O(n^2)
+     * Space Complexity -> O(1)
+     */
     public int missingNumberBrute(int[] nums) {
         int n = nums.length;
 
@@ -18,6 +22,10 @@ public class MissingNumber_3 {
 
         return -1;
     }
+    /**
+     * Time Complexity -> O(n) + O(n) = O(2n)
+     * Space Complexity -> O(n)
+     */
     public int missingNumberBetter(int[] nums) {
         int n = nums.length;
         int[] frequencyArray = new int[n + 1];
@@ -34,6 +42,10 @@ public class MissingNumber_3 {
 
         return -1;
     }
+    /**
+     * Time Complexity -> O(n)
+     * Space Complexity -> O(1)
+     */
     public int missingNumberOptimal_1(int[] nums) {
         int n = nums.length;
 
@@ -46,6 +58,10 @@ public class MissingNumber_3 {
 
         return sum1 - sum2;
     }
+    /**
+     * Time Complexity -> O(n)
+     * Space Complexity -> O(1)
+     */
     public int missingNumberOptimal_2(int[] nums) {
         int xor1 = 0;
         int xor2 = 0;
@@ -59,7 +75,8 @@ public class MissingNumber_3 {
     }
     public static void main(String[] args) {
         MissingNumber_3 missingNumber3 = new MissingNumber_3();
-        int[] nums = {0, 1, 2, 4};
+        int[] nums = {1, 2, 4, 5};
+
         int missingNumberBrute = missingNumber3.missingNumberBrute(nums);
         System.out.println("Missing Number Brute: " + missingNumberBrute);
 
