@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReArrangeElementsBySign_2 {
+    /**
+     * Time Complexity -> O(n) + O(n/2)
+     * Space Complexity -> O(n/2 + n/2) = O(n)
+     */
     public int[] rearrangeElementsBrute(int[] nums) {
         int n = nums.length;
         List<Integer> posElements = new ArrayList<>();
@@ -35,6 +39,10 @@ public class ReArrangeElementsBySign_2 {
 
         return nums;
     }
+    /**
+     * Time Complexity -> O(n)
+     * Space Complexity -> O(n)
+     */
     public int[] rearrangeElementsOptimal(int[] nums) {
         int n = nums.length;
         int[] rearrangeArray = new int[n];
@@ -55,7 +63,8 @@ public class ReArrangeElementsBySign_2 {
     }
     public static void main(String[] args) {
         ReArrangeElementsBySign_2 reArrangeElementsBySign = new ReArrangeElementsBySign_2();
-        int[] nums = {1, 2, -4, -5};
+        int[] nums = {3, 1, -2, -5, 2, -4};
+
         int[] rearrangeArrayBrute = reArrangeElementsBySign.rearrangeElementsBrute(nums);
         System.out.print("Rearrange Elements Brute: ");
         HelperMethods.printArray(rearrangeArrayBrute);

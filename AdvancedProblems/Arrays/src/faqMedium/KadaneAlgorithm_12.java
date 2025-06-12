@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KadaneAlgorithm_12 {
+    /**
+     * Time Complexity: O(n^3)
+     * Space Complexity: O(1)
+     */
     public int maxSubArrayBrute(int[] nums) {
         int n = nums.length;
         int maximumSum = Integer.MIN_VALUE;
@@ -19,6 +23,10 @@ public class KadaneAlgorithm_12 {
         }
         return maximumSum;
     }
+    /**
+     * Time Complexity: O(n^2)
+     * Space Complexity: O(1)
+     */
     public int maxSubArrayBetter(int[] nums) {
         int n = nums.length;
         int maximumSum = Integer.MIN_VALUE;
@@ -32,6 +40,10 @@ public class KadaneAlgorithm_12 {
 
         return maximumSum;
     }
+    /**
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     */
     // Optimal Solution
     public int kadaneAlgorithm_1(int[] nums) {
         int n = nums.length;
@@ -51,6 +63,10 @@ public class KadaneAlgorithm_12 {
         }
         return maximumSum;
     }
+    /**
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     */
     public int kadaneAlgorithm_2(int[] nums) {
         int n = nums.length;
 
@@ -84,6 +100,18 @@ public class KadaneAlgorithm_12 {
 
         return maximumSum;
     }
+    /**
+     * Time Complexity:
+     * -> The main loop runs once through the array ⇒ O(n)
+     * -> For each element, we do constant time operations (comparison, update, adding to list)
+     * -> Printing all sub-arrays at the end:
+     *    - Worst case: if many sub-arrays have the same max sum, printing could take O(n^2)
+     * -> So total time = O(n + k), where k is the total number of elements printed across all max sub-arrays
+
+     * Space Complexity:
+     * -> O(m) where m is the number of max sub-arrays (each storing a pair of indices)
+     * -> So auxiliary space = O(m)
+     */
     public static void kadaneWithAllMaxSubArrays(int[] nums) {
         int n = nums.length;
 

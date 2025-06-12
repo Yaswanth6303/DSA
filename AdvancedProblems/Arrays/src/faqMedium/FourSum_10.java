@@ -5,6 +5,10 @@ import fundamentals.HelperMethods;
 import java.util.*;
 
 public class FourSum_10 {
+    /**
+     * Time Complexity: O(n^4)
+     * Space Complexity: O(2 x no. of the unique triplets)
+     */
     public List<List<Integer>> fourSumBrute(int[] nums, int target) {
         Set<List<Integer>> qudrapleSet = new HashSet<>();
         int n = nums.length;
@@ -23,6 +27,10 @@ public class FourSum_10 {
 
         return new ArrayList<>(qudrapleSet);
     }
+    /**
+     * Time Complexity: O(n^3 x log(no. of unique triplets))
+     * Space Complexity: O(n)
+     */
     public List<List<Integer>> fourSumBetter(int[] nums, int target) {
         int n = nums.length;
         Set<List<Integer>> qudrapleSet = new HashSet<>();
@@ -46,6 +54,10 @@ public class FourSum_10 {
 
         return new ArrayList<>(qudrapleSet);
     }
+    /**
+     * Time Complexity: O(n^3)
+     * Space Complexity: O(1)
+     */
     public List<List<Integer>> fourSumOptimal(int[] nums, int target) {
         int n = nums.length;
         List<List<Integer>> qudrapleList = new ArrayList<>();
@@ -82,8 +94,8 @@ public class FourSum_10 {
     }
     public static void main(String[] args) {
         FourSum_10 solver = new FourSum_10();
-        int[] nums = { 1, -2, 3, 5, 7, 9 };
-        int target = 7;
+        int[] nums = { 1, 0, -1, 0, -2, 2 };
+        int target = 0;
 
         System.out.println("Quadruple List (Brute Force):");
         List<List<Integer>> brute = solver.fourSumBrute(nums, target);

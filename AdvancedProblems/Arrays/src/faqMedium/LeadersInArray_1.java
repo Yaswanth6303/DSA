@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class LeadersInArray_1 {
+    /**
+     * Time Complexity -> O(n^2)
+     * Space Complexity -> O(1)
+     */
     public ArrayList<Integer> leadersArrayBrute(int[] nums) {
         int n = nums.length;
         ArrayList<Integer> leadersList = new ArrayList<>();
@@ -25,6 +29,10 @@ public class LeadersInArray_1 {
 
         return leadersList;
     }
+    /**
+     * Time Complexity -> O(n)
+     * Space Complexity -> O(1), In worst case O(n) because it can store up to n elements
+     */
     public ArrayList<Integer> leadersArrayOptimal(int[] nums) {
         int n = nums.length;
         ArrayList<Integer> leadersList = new ArrayList<>();
@@ -43,7 +51,8 @@ public class LeadersInArray_1 {
     }
     public static void main(String[] args) {
         LeadersInArray_1 leadersInArray = new LeadersInArray_1();
-        int[] nums = {1, 2, 5, 3, 1, 2};
+        int[] nums = {10, 22, 12, 3, 0, 6};
+
         ArrayList<Integer> leadersListBrute = leadersInArray.leadersArrayBrute(nums);
         HelperMethods.printList(leadersListBrute);
 

@@ -10,6 +10,14 @@ import java.util.Collections;
 import java.util.Arrays;
 
 public class ThreeSum_9 {
+    /**
+     * Time Complexity:
+     * - O(n^3) where n is size of the array
+     * - Inserting triplets into the set takes O(log(no. of unique triplets))
+     * - Total = O(n^3 * log(no. of unique triplets))
+     *
+     * Space Complexity: O(2 x no. of the unique triplets)
+     */
     public List<List<Integer>> threeSumBrute(int[] nums) {
         int n = nums.length;
         Set<List<Integer>> tripletSet = new HashSet<>();
@@ -28,6 +36,10 @@ public class ThreeSum_9 {
 
         return new ArrayList<>(tripletSet);
     }
+    /**
+     * Time Complexity: O(n^2 x log(no. of unique triplets))
+     * Space Complexity: O(2 x no. of the unique triplets)
+     */
     public List<List<Integer>> threeSumBetter(int[] nums) {
         int n = nums.length;
         Set<List<Integer>> tripletSet = new HashSet<>();
@@ -47,6 +59,10 @@ public class ThreeSum_9 {
 
         return new ArrayList<>(tripletSet);
     }
+    /**
+     * Time Complexity: O(n^2 x log(no. of unique triplets))
+     * Space Complexity: O(2 x no. of the unique triplets)
+     */
     public List<List<Integer>> threeSumOptimal(int[] nums) {
         List<List<Integer>> tripletList = new ArrayList<>();
         Arrays.sort(nums);
@@ -81,7 +97,8 @@ public class ThreeSum_9 {
     }
     public static void main(String[] args) {
         ThreeSum_9 threeSum9 = new ThreeSum_9();
-        int[] nums = {2, -2, 0, 3, -3, 5};
+        int[] nums = {-1, 0, 1, 2, -1, -4};
+
         System.out.println("Three Sum Brute: ");
         List<List<Integer>> threeSumBrute = threeSum9.threeSumBrute(nums);
         HelperMethods.printListOfLists(threeSumBrute);

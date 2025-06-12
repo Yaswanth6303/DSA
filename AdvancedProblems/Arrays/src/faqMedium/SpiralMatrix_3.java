@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpiralMatrix_3 {
+    /**
+     * Time Complexity -> O(n * m)
+     * Space Complexity -> O(1)
+     */
     public List<Integer> spiralOrder(int[][] matrix) {
         int n = matrix.length;
         int m = matrix[0].length;
@@ -44,7 +48,6 @@ public class SpiralMatrix_3 {
 
         return spiralList;
     }
-
     public static void main(String[] args) {
         SpiralMatrix_3 spiralMatrix3 = new SpiralMatrix_3();
         int[][] matrix = {

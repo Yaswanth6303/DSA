@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PascalTriangleIII_6 {
+    /**
+     * Time Complexity: O(n^3)
+     * Space Complexity: O(n^2)
+     */
     public List<List<Integer>> pascalTriangleBrute(int n) {
         List<List<Integer>> pascalTriangle = new ArrayList<>();
         for (int r = 1; r <= n; r++) {
@@ -18,6 +22,10 @@ public class PascalTriangleIII_6 {
 
         return pascalTriangle;
     }
+    /**
+     * Time Complexity: O(r)
+     * Space Complexity: O(r)
+     */
     public List<Integer> generateRow(int row) {
         List<Integer> pascalList = new ArrayList<>();
         long result = 1;
@@ -30,6 +38,10 @@ public class PascalTriangleIII_6 {
 
         return pascalList;
     }
+    /**
+     * Time Complexity: O(n^2)
+     * Space Complexity: O(n^2)
+     */
     public List<List<Integer>> pascalTriangleOptimal(int n) {
         List<List<Integer>> pascalTriangle = new ArrayList<>();
         for (int i = 1; i <= n; i++) {
@@ -40,10 +52,12 @@ public class PascalTriangleIII_6 {
     }
     public static void main(String[] args) {
         PascalTriangleIII_6 pascalTriangleIII6 = new PascalTriangleIII_6();
-        int n = 5;
+        int n = 6;
+
         System.out.println("Pascal Triangle Brute: ");
         List<List<Integer>> pascalTriangleBrute = pascalTriangleIII6.pascalTriangleBrute(n);
         HelperMethods.printListOfLists(pascalTriangleBrute);
+
         System.out.println("Pascal Triangle Optimal: ");
         List<List<Integer>> pascalTriangleOptimal = pascalTriangleIII6.pascalTriangleOptimal(n);
         HelperMethods.printListOfLists(pascalTriangleOptimal);

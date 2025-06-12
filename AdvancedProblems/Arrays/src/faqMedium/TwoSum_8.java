@@ -8,6 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TwoSum_8 {
+    /**
+     * Time Complexity: O(n^2)
+     * Space Complexity: O(1) as the extra space used is constant, only storing a fixed-size array.
+     */
     public int[] twoSumBrute(int[] nums, int target) {
         int n = nums.length;
 
@@ -21,6 +25,26 @@ public class TwoSum_8 {
 
         return new int[]{-1, -1};
     }
+    /**
+     * Time Complexity:
+     * - Average Case: O(n)
+     *     - We traverse the array once → O(n)
+     *     - HashMap operations (put, containsKey) take O(1) on average.
+     *     - So overall time complexity is O(n)
+     *
+     * - Worst Case: O(n^2)
+     *     - In rare cases, due to too many hash collisions, HashMap operations can degrade to O(n)
+     *     - Then each lookup could take O(n), and with n iterations, total time becomes O(n^2)
+     *
+     * - Using TreeMap Instead of HashMap: O(n * log n)
+     *     - TreeMap operations (put, get, containsKey) take O(log n) as it uses Red-Black Tree
+     *     - So overall time is O(n * log n)
+
+     * Space Complexity:
+     * - O(n)
+     *     - In the worst case, we store all elements in the map
+     *     - So space grows linearly with input size
+     */
     public int[] twoSumBetter(int[] nums, int target) {
         int n = nums.length;
         Map<Integer, Integer> mpp = new HashMap<>();
@@ -38,6 +62,10 @@ public class TwoSum_8 {
 
         return new int[]{-1, -1};
     }
+    /**
+     * Time Complexity: O(n) + O(n * log n)
+     * Space Complexity: O(n)
+     */
     public int[] twoSumOptimal(int[] nums, int target) {
        int n = nums.length;
 
@@ -47,6 +75,8 @@ public class TwoSum_8 {
            elementIndex[i][0] = nums[i];
            elementIndex[i][1] = i;
        }
+
+       // HelperMethods.printMatrix(elementIndex);
 
        Arrays.sort(elementIndex, new Comparator<int[]>() {
            @Override
@@ -74,8 +104,9 @@ public class TwoSum_8 {
     }
     public static void main(String[] args) {
         TwoSum_8 twoSum8 = new TwoSum_8();
-        int[] nums = {1, 6, 2, 10, 3};
-        int target = 7;
+        int[] nums = {2, 6, 5, 8, 11};
+        int target = 14;
+
         int[] twoSumBrute = twoSum8.twoSumBrute(nums, target);
         System.out.print("Two Sum Brute: ");
         HelperMethods.printArray(twoSumBrute);

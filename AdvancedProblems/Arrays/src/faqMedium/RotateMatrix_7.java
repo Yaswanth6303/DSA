@@ -3,6 +3,10 @@ package faqMedium;
 import fundamentals.HelperMethods;
 
 public class RotateMatrix_7 {
+    /**
+     * Time Complexity: O(n^2) + O(n^2)
+     * Space Complexity: O(n^2)
+     */
     public void rotateMatrixBrute(int[][] matrix) {
         int n = matrix.length;
 
@@ -17,6 +21,10 @@ public class RotateMatrix_7 {
             System.arraycopy(rotatedMatrix[i], 0, matrix[i], 0, n);
         }
     }
+    /**
+     * Time Complexity: O(n^2)
+     * Space Complexity: O(1)
+     */
     public void transpose(int[][] matrix, int r, int c) {
         for (int i = 0; i < c; i++) {
             for (int j = i; j < r; j++) {
@@ -26,6 +34,10 @@ public class RotateMatrix_7 {
             }
         }
     }
+    /**
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     */
     public void reverse(int[] nums) {
         int n = nums.length;
         int firstIndex = 0;
@@ -38,6 +50,15 @@ public class RotateMatrix_7 {
             lastIndex--;
         }
     }
+    /**
+     * Time Complexity:
+     * -> transpose(): O(n^2) — two nested loops for a square matrix of size n x n
+     * -> reverse() on each row: O(n) per row, and there are n rows ⇒ O(n^2)
+     * -> Total: O(n^2) + O(n^2) = O(n^2)
+
+     * Space Complexity:
+     * -> O(1), in-place rotation with only a few temp variables
+     */
     public void rotateMatrixOptimal1(int[][] matrix) {
         int n = matrix.length;
         transpose(matrix, n, n);
@@ -45,6 +66,16 @@ public class RotateMatrix_7 {
             reverse(matrix[i]);
         }
     }
+    /**
+     * Time Complexity:
+     * -> transpose: swaps only elements above the diagonal ⇒ still O(n^2)
+     * -> reverse() on each row: O(n) per row, total O(n^2)
+     * -> Total: O(n^2) + O(n^2) = O(n^2)
+
+     * Space Complexity:
+     * -> O(1), all operations are in-place
+     */
+
     public void rotateMatrixOptimal2(int[][] matrix) {
         int n = matrix.length;
         // Outer loop: i goes from 0 to n - 2 (i.e., 0 to 1 when n = 3)

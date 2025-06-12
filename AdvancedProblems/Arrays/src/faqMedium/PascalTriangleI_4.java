@@ -4,6 +4,10 @@ public class PascalTriangleI_4 {
     public int pascalTriangle(int r, int c) {
         return nCr(r - 1, c - 1);
     }
+    /**
+     * Time Complexity -> O(r)
+     * Space Complexity -> O(1)
+     */
     public static int nCr(int n, int r) {
         int result = 1;
         for(int i = 0; i < r; i++) {
