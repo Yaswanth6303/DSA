@@ -7,7 +7,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class NextPermutation_13 {
-
+    /**
+     * Time Complexity: O(n * n!)
+     * Space Complexity: O(n * n!)
+     */
     public void findNextPermutationBrute(int[] nums) {
         List<List<Integer>> allPermutations = generateAllPermutations(nums);
         int length = nums.length;
@@ -76,6 +79,10 @@ public class NextPermutation_13 {
         }
         return true;
     }
+    /**
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     */
     public void findNextPermutationOptimal(int[] nums) {
         int n = nums.length;
         int pivot = -1;
@@ -112,7 +119,7 @@ public class NextPermutation_13 {
     public static void main(String[] args) {
         NextPermutation_13 solver = new NextPermutation_13();
 
-        int[] nums = {3, 1, 2};
+        int[] nums = {1, 2, 3, 6, 5, 4};
         solver.findNextPermutationBrute(nums);
         System.out.print("Next Permutation Brute: ");
         HelperMethods.printArray(nums);
