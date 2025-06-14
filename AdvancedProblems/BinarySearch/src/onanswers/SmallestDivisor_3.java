@@ -7,11 +7,7 @@ public class SmallestDivisor_3 {
      */
     public int smallestDivisorBrute(int[] nums, int limit) {
         int n = nums.length;
-        int maximum = Integer.MIN_VALUE;
-
-        for (int i = 0; i < n; i++) {
-            maximum = Math.max(nums[i], maximum);
-        }
+        int maximum = maximum(nums);
 
         for (int d = 1; d <= maximum; d++) {
             int sum = 0;
@@ -33,6 +29,18 @@ public class SmallestDivisor_3 {
         }
         return sum;
     }
+    public int maximum(int[] nums) {
+        int n = nums.length;
+
+        int maxValue = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > maxValue) {
+                maxValue = nums[i];
+            }
+        }
+
+        return maxValue;
+    }
     /**
      * Time Complexity: O(log(maximum) * n)
      * Space Complexity: O(1)
@@ -41,10 +49,7 @@ public class SmallestDivisor_3 {
         int n = nums.length;
         if (n > limit) return -1;
 
-        int maximum = Integer.MIN_VALUE;
-        for (int i = 0; i < n; i++) {
-            maximum = Math.max(maximum, nums[i]);
-        }
+        int maximum = maximum(nums);
 
         int low = 0;
         int high = maximum;
@@ -69,5 +74,9 @@ public class SmallestDivisor_3 {
         int smallestDivisorBrute = smallestDivisor3.smallestDivisorBrute(nums, limit);
         System.out.print("Smallest Divisor Brute: ");
         System.out.println(smallestDivisorBrute);
+
+        int smallestDivisorOptimal = smallestDivisor3.smallestDivisorOptimal(nums.clone(), limit);
+        System.out.print("Smallest Divisor Optimal: ");
+        System.out.println(smallestDivisorOptimal);
     }
 }
