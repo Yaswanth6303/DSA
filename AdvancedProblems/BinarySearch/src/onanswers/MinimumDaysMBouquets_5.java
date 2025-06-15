@@ -14,7 +14,6 @@ public class MinimumDaysMBouquets_5 {
         return new int[]{maxValue, minValue};
     }
     public boolean possible(int[] nums, int day, int k, int m) {
-        int n = nums.length;
         int bloomedCount = 0;
         int numOfBouquets = 0;
 
@@ -30,6 +29,10 @@ public class MinimumDaysMBouquets_5 {
 
         return numOfBouquets >= m;
     }
+    /**
+     * Time Complexity: O((maximum - minimum + 1) * N)
+     * Space Complexity: O(1)
+     */
     public int roseGardenBrute(int[] nums, int k, int m) {
         int n = nums.length;
         long minimumFlowers = (long) m * k;
@@ -45,6 +48,32 @@ public class MinimumDaysMBouquets_5 {
 
         return -1;
     }
+    /**
+     * Time Complexity: O(n log(maximum - minimum + 1))
+     * Space Complexity: O(1)
+     */
+    public int roseGardenOptimal(int[] nums, int k, int m) {
+        int n = nums.length;
+        long minimumFlowers = (long) m * k;
+        if (minimumFlowers > n) return -1;
+
+        int[] findMaxMin = findMaxAndMin(nums);
+        int low = findMaxMin[1];
+        int high = findMaxMin[0];
+        int result = -1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (possible(nums, mid, k, m)) {
+                result = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return result;
+    }
     public static void main(String[] args) {
         MinimumDaysMBouquets_5 solver = new MinimumDaysMBouquets_5();
         int[] nums = {7, 7, 7, 7, 13, 11, 12, 7};
@@ -54,9 +83,17 @@ public class MinimumDaysMBouquets_5 {
         int numberOfBouquetsBrute = solver.roseGardenBrute(nums, k, m);
 
         if (numberOfBouquetsBrute == -1) {
-            System.out.println("We cannot make m bouquets.");
+            System.out.println("Brute - We cannot make m bouquets.");
         } else {
-            System.out.println("We can make bouquets on day " + numberOfBouquetsBrute);
+            System.out.println("Brute - We can make bouquets on day " + numberOfBouquetsBrute);
+        }
+
+        int numberOfBouquetsOptimal = solver.roseGardenOptimal(nums.clone(), k, m);
+
+        if (numberOfBouquetsOptimal == -1) {
+            System.out.println("Optimal - We cannot make m bouquets.");
+        } else {
+            System.out.println("Optimal - We can make bouquets on day " + numberOfBouquetsOptimal);
         }
 
         int[] nums1 = {1, 10, 3, 10, 2};
@@ -66,9 +103,9 @@ public class MinimumDaysMBouquets_5 {
         int numberOfBouquetsBrute1 = solver.roseGardenBrute(nums1, k1, m1);
 
         if (numberOfBouquetsBrute1 == -1) {
-            System.out.println("We cannot make m bouquets.");
+            System.out.println("Brute - We cannot make m bouquets.");
         } else {
-            System.out.println("We can make bouquets on day " + numberOfBouquetsBrute1);
+            System.out.println("Brute - We can make bouquets on day " + numberOfBouquetsBrute1);
         }
     }
 }
