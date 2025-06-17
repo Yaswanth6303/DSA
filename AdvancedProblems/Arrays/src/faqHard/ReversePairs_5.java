@@ -1,11 +1,13 @@
 package faqHard;
 
-import fundamentals.HelperMethods;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReversePairs_5 {
+    /**
+     * Time Complexity: O(n^2)
+     * Space Complexity: O(1)
+     */
     public int reversePairsBrute(int[] nums) {
         int n = nums.length;
         int count = 0;
@@ -73,14 +75,17 @@ public class ReversePairs_5 {
 
         return count;
     }
-
+    /**
+     * Time Complexity: O(2N * logN)
+     * Space Complexity: O(N)
+     */
     public int reversePairsOptimal(int[] nums) {
         int n = nums.length;
         return mergeSort(nums, 0, n - 1);
     }
     public static void main(String[] args) {
         ReversePairs_5 solver = new ReversePairs_5();
-        int[] nums = {6, 4, 1, 2, 7};
+        int[] nums = {40, 25, 19, 12, 9, 6, 2};
         System.out.print("Reverse Pairs Brute: ");
         int reversePairsBrute = solver.reversePairsBrute(nums);
         System.out.println(reversePairsBrute);
