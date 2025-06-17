@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 public class MajorityElement_2 {
+    /**
+     * Time Complexity: O(n^2)
+     * Space Complexity: O(1)
+     */
     public List<Integer> majorityElementTwoBrute(int[] nums) {
         int n = nums.length;
         List<Integer> majorityElementList = new ArrayList<>();
@@ -33,45 +37,56 @@ public class MajorityElement_2 {
 
         return majorityElementList;
     }
+    /**
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
+     */
     public List<Integer> majorityElementTwoBetter(int[] nums) {
         int n = nums.length;
-        List<Integer> majorityElementList = new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
         Map<Integer, Integer> mpp = new HashMap<>();
 
-        int minimum = (n / 3) + 1;
+        for(int num : nums) {
+            mpp.put(num, mpp.getOrDefault(num, 0) + 1);
+        }
 
-        for (int i = 0; i < n; i++) {
-            mpp.put(nums[i], mpp.getOrDefault(nums[i], 0) + 1);
+        for(Map.Entry<Integer, Integer> entry : mpp.entrySet()) {
+            int key = entry.getKey();
+            int value = entry.getValue();
 
-            if (mpp.get(nums[i]) == minimum) {
-                majorityElementList.add(nums[i]);
+            if(value > (n / 3)) {
+                result.add(key);
             }
 
-            if (majorityElementList.size() == 2) {
+            if (result.size() == 2) {
                 break;
             }
         }
 
-        return majorityElementList;
+        return result;
     }
+    /**
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     */
     public List<Integer> majorityElementTwoOptimal(int[] nums) {
         int n = nums.length;
-        List<Integer> majorityElementList = new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
         int counter_1 = 0;
-        int element_1 = -1;
+        int element_1 = Integer.MIN_VALUE;
         int counter_2 = 0;
-        int element_2 = -1;
+        int element_2 = Integer.MIN_VALUE;
 
-        for (int i = 0; i < n; i++) {
-            if (counter_1 == 0 && nums[i] != element_2) {
+        for(int i = 0; i < n; i++) {
+            if(counter_1 == 0 && nums[i] != element_2) {
                 counter_1 = 1;
                 element_1 = nums[i];
-            } else if (counter_2 == 0 && nums[i] != element_1) {
+            } else if(counter_2 == 0 && nums[i] != element_1) {
                 counter_2 = 1;
                 element_2 = nums[i];
-            } else if (element_1 == nums[i]) {
+            } else if(nums[i] == element_1) {
                 counter_1++;
-            } else if (element_2 == nums[i]) {
+            } else if(nums[i] == element_2) {
                 counter_2++;
             } else {
                 counter_1--;
@@ -82,24 +97,20 @@ public class MajorityElement_2 {
         counter_1 = 0;
         counter_2 = 0;
 
-        for (int i = 0; i < n; i++) {
-            if (nums[i] == element_1) {
+        for(int i = 0; i < n; i++) {
+            if(nums[i] == element_1) {
                 counter_1++;
             }
-            if (nums[i] == element_2) {
+
+            if(nums[i] == element_2) {
                 counter_2++;
             }
         }
 
-        int minimum = (n / 3) + 1;
-        if (counter_1 >= minimum) {
-            majorityElementList.add(element_1);
-        }
-        if (counter_2 >= minimum && element_1 != element_2) {
-            majorityElementList.add(element_2);
-        }
+        if(counter_1 > (n / 3)) result.add(element_1);
+        if(counter_2 > (n / 3) && element_1 != element_2) result.add(element_2);
 
-        return majorityElementList;
+        return result;
     }
     public static void main(String[] args) {
         MajorityElement_2 majorityElement2 = new MajorityElement_2();
