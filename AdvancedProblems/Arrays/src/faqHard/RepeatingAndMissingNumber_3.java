@@ -2,9 +2,11 @@ package faqHard;
 
 import fundamentals.HelperMethods;
 
-import java.util.Map;
-
 public class RepeatingAndMissingNumber_3 {
+    /**
+     * Time Complexity: O(n^2)
+     * Space Complexity: O(1)
+     */
     public int[] findMissingRepeatingNumbersBrute(int[] nums) {
         int n = nums.length;
         int repeatingNumber = -1;
@@ -24,6 +26,10 @@ public class RepeatingAndMissingNumber_3 {
 
         return new int[]{repeatingNumber, missingNumber};
     }
+    /**
+     * Time Complexity: O(2N)
+     * Space Complexity: O(N)
+     */
     public int[] findMissingRepeatingNumbersBetter(int[] nums) {
         int n = nums.length;
         int[] hash = new int[n + 1];
@@ -49,6 +55,10 @@ public class RepeatingAndMissingNumber_3 {
 
         return new int[]{repeatingNumber, missingNumber};
     }
+    /**
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     */
     public int[] findMissingRepeatingNumbersOptimal(int[] nums) {
         int n = nums.length;
 
@@ -75,9 +85,15 @@ public class RepeatingAndMissingNumber_3 {
     }
     public static void main(String[] args) {
         RepeatingAndMissingNumber_3 solver = new RepeatingAndMissingNumber_3();
-        int[] nums = {3, 5, 4, 1, 1};
-        int[] repeatingMissingNumber = solver.findMissingRepeatingNumbersBetter(nums);
-        System.out.print("Repeating and Missing number in the array is: ");
-        HelperMethods.printArray(repeatingMissingNumber);
+        int[] nums = {4, 3, 6, 2, 1, 1};
+
+        System.out.print("Brute Force Method: ");
+        HelperMethods.printArray(solver.findMissingRepeatingNumbersBrute(nums));
+
+        System.out.print("Better (Hashing) Method: ");
+        HelperMethods.printArray(solver.findMissingRepeatingNumbersBetter(nums.clone()));
+
+        System.out.print("Optimal Method: ");
+        HelperMethods.printArray(solver.findMissingRepeatingNumbersOptimal(nums.clone()));
     }
 }
