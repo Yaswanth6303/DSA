@@ -1,6 +1,10 @@
 package faqHard;
 
 public class CountInversions_4 {
+    /**
+     * Time Complexity: O(n^2)
+     * Space Complexity: O(1)
+     */
     public long numberOfInversionsBrute(int[] nums) {
         int n = nums.length;
         int count = 0;
@@ -56,12 +60,17 @@ public class CountInversions_4 {
         }
         return count;
     }
+    /**
+     * Time Complexity: O(n log n)
+     * Space Complexity: O(n)
+     */
     public long countInversionsOptimal(int[] nums) {
         return mergeSort(nums, 0, nums.length - 1);
     }
     public static void main(String[] args) {
         CountInversions_4 solver = new CountInversions_4();
-        int[] nums = {2, 3, 7, 1, 3, 5};
+        int[] nums = {5, 3, 2, 4, 1};
+
         System.out.print("Count Inversions Brute: ");
         long countInversionsBrute = solver.numberOfInversionsBrute(nums);
         System.out.println(countInversionsBrute);
