@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MajorityElement_1 {
+    /**
+     * Time Complexity: O(n^2)
+     * Space Complexity: O(1)
+     */
     public int majorityElementBrute(int[] nums) {
         int n = nums.length;
 
@@ -22,6 +26,10 @@ public class MajorityElement_1 {
 
         return -1;
     }
+    /**
+     * Time Complexity: O(N) + O(N) = O(2N)
+     * Space Complexity: O(N)
+     */
     public int majorityElementBetter(int[] nums) {
         int n = nums.length;
         Map<Integer, Integer> mpp = new HashMap<>();
@@ -40,6 +48,10 @@ public class MajorityElement_1 {
 
         return -1;
     }
+    /**
+     * Time Complexity: O(N)
+     * Space Complexity: O(1)
+     */
     public int majorityElementOptimal(int[] nums) {
         int n = nums.length;
         int count = 0;
@@ -71,7 +83,7 @@ public class MajorityElement_1 {
     }
     public static void main(String[] args) {
         MajorityElement_1 majorityElementI = new MajorityElement_1();
-        int[] nums = {7, 0, 0, 1, 7, 7, 2, 7, 7};
+        int[] nums = {2, 2, 3, 3, 1, 2, 2};
 
         System.out.print("Majority Element Brute: ");
         int majorityElementBrute = majorityElementI.majorityElementBrute(nums);
@@ -81,8 +93,9 @@ public class MajorityElement_1 {
         int majorityElementBetter = majorityElementI.majorityElementBetter(nums.clone());
         System.out.println(majorityElementBetter);
 
+        int[] nums1 = {7, 7, 5, 7, 5, 1, 5, 7, 5, 5, 7, 7, 5, 5, 5, 5};
         System.out.print("Majority Element Optimal: ");
-        int majorityElementOptimal = majorityElementI.majorityElementOptimal(nums.clone());
+        int majorityElementOptimal = majorityElementI.majorityElementOptimal(nums1);
         System.out.println(majorityElementOptimal);
     }
 }
