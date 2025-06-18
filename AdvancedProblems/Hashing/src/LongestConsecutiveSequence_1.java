@@ -93,7 +93,8 @@ public class LongestConsecutiveSequence_1 {
     }
     public static void main(String[] args) {
         LongestConsecutiveSequence_1 solver = new LongestConsecutiveSequence_1();
-        int[] nums = {100, 4, 200, 1, 3, 2};
+        int[] nums = {102, 4, 100, 1, 101, 3, 2, 1, 1};
+
         int longestBrute = solver.longestConsecutiveSequenceBrute(nums);
         System.out.print("Longest Sequence Brute: ");
         System.out.println(longestBrute);
