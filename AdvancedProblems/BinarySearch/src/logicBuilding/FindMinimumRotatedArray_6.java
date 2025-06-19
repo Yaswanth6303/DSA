@@ -34,7 +34,7 @@ public class FindMinimumRotatedArray_6 {
             int mid = low + (high - low) / 2;
 
             if (nums.get(low) <= nums.get(high)) {
-                minimumValue = Math.min(minimumValue, nums.get(minimumValue));
+                minimumValue = Math.min(minimumValue, nums.get(low));
                 break;
             }
 
