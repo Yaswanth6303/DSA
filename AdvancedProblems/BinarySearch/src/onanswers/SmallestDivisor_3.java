@@ -50,21 +50,22 @@ public class SmallestDivisor_3 {
         if (n > limit) return -1;
 
         int maximum = maximum(nums);
-
-        int low = 0;
+        int low = 1;
         int high = maximum;
+        int result = -1;
 
         while (low <= high) {
             int mid = low + (high - low) / 2;
 
             if (sumByD(nums, mid) <= limit) {
+                result = mid;
                 high = mid - 1;
             } else {
                 low = mid + 1;
             }
         }
 
-        return low;
+        return result;
     }
     public static void main(String[] args) {
         SmallestDivisor_3 smallestDivisor3 = new SmallestDivisor_3();
