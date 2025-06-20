@@ -2,7 +2,7 @@ package onanswers;
 
 public class SquareRootNumber_1 {
     /**
-     * Time Complexity: O(n)
+     * Time Complexity: O(sqrt(n))
      * Space Complexity: O(1)
      */
     public long floorSqrtBrute(long n) {
