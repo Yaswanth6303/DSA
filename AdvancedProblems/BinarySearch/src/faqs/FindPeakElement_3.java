@@ -58,3 +58,11 @@ public class FindPeakElement_3 {
         System.out.println("Optimal Peak Index: " + optimalIndex + " (Value: " + nums[optimalIndex] + ")");
     }
 }
+
+/**
+ * Try For these examples also
+ * 1) 1, 10, 13, 7, 6, 5, 4, 2, 1, 0
+ * 2) 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+ * 3) 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+ * 4) 1, 5, 1, 2, 1
+ */
