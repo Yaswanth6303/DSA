@@ -142,8 +142,10 @@ public class MedianOf2SortedArrays_4 {
         double medianBetter = solver.medianBetter(nums1.clone(), nums2.clone());
         System.out.println(medianBetter);
 
+        int[] nums3 = {7, 12, 14, 15};
+        int[] nums4 = {1, 2, 3, 4, 9, 11};
         System.out.print("Median of the array is (Optimal): ");
-        double medianOptimal = solver.medianBetter(nums1.clone(), nums2.clone());
+        double medianOptimal = solver.medianBetter(nums3, nums4);
         System.out.println(medianOptimal);
     }
 }
