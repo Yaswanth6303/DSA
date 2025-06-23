@@ -23,7 +23,7 @@ public class FindMinimumRotatedArray_6 {
      * Time Complexity: O(log n)
      * Space Complexity: O(1)
      */
-    public int findMinBinarySearch(ArrayList<Integer> nums) {
+    public int findMinBinarySearchMethod1(ArrayList<Integer> nums) {
         int n = nums.size();
 
         int low = 0;
@@ -49,6 +49,39 @@ public class FindMinimumRotatedArray_6 {
 
         return minimumValue;
     }
+    /**
+     * Time Complexity: O(log n)
+     * Space Complexity: O(1)
+     */
+    public int findMinBinarySearchMethod2(ArrayList<Integer> nums) {
+        int n = nums.size();
+        int low = 0;
+        int high = n - 1;
+
+        if (nums.get(low) <= nums.get(high)) {
+            return nums.get(low);
+        }
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (mid > 0 && nums.get(mid) < nums.get(mid - 1)) {
+                return nums.get(mid);
+            }
+
+            if (mid < n - 1 && nums.get(mid) > nums.get(mid + 1)) {
+                return nums.get(mid + 1);
+            }
+
+            if (nums.get(low) <= nums.get(mid)) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return -1;
+    }
     public static void main(String[] args) {
         FindMinimumRotatedArray_6 solver = new FindMinimumRotatedArray_6();
         ArrayList<Integer> arrayList = new ArrayList<>(Arrays.asList(4, 5, 6, 7, 0, 1, 2));
@@ -57,9 +90,13 @@ public class FindMinimumRotatedArray_6 {
         System.out.print("Minimum value (Linear Search): ");
         System.out.println(minimumValueBrute);
 
-        int minimumValueOptimal = solver.findMinBinarySearch(arrayList);
-        System.out.print("Minimum value (Binary Search): ");
-        System.out.println(minimumValueOptimal);
+        int minimumValueOptimalMethod1 = solver.findMinBinarySearchMethod1(arrayList);
+        System.out.print("Minimum value (Binary Search M1): ");
+        System.out.println(minimumValueOptimalMethod1);
+
+        int minimumValueOptimalMethod2 = solver.findMinBinarySearchMethod2(arrayList);
+        System.out.print("Minimum value (Binary Search M2): ");
+        System.out.println(minimumValueOptimalMethod2);
     }
 }
 
@@ -68,5 +105,4 @@ public class FindMinimumRotatedArray_6 {
  * 1) 7, 8, 1, 2, 3, 4, 5, 6
  * 2) 4, 5, 1, 2, 3
  * 3) 1, 2
- * 4) 4, 5, 6, 0, 1, 2
  */
