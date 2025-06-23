@@ -76,3 +76,10 @@ public class SearchInRotatedArrayII_5 {
         System.out.println(searchTargetOptimal);
     }
 }
+
+/**
+ * Try these examples
+ * 1) 6, 7, 1, 2, 3, 4, 4, 5
+ * 2) 4, 5, 1, 2, 3, 3, 4, 4
+ * 3) 3, 1, 2, 3, 3, 3, 3
+ */
