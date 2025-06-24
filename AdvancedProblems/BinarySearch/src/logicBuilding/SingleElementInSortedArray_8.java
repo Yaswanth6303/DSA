@@ -2,10 +2,39 @@ package logicBuilding;
 
 public class SingleElementInSortedArray_8 {
     /**
-     * Time Complexity: O(n)
+     * Time Complexity: O(n^2)
      * Space Complexity: O(1)
      */
     public int singleNonDuplicateBruteI(int[] nums) {
+        int n = nums.length;
+        int lastElement = Integer.MIN_VALUE;
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == lastElement) {
+                continue;
+            }
+
+            int count = 0;
+            for (int j = 0; j < n; j++) {
+                if (nums[i] == nums[j]) {
+                    count++;
+                }
+            }
+
+            if (count == 1) {
+                return nums[i];
+            }
+
+            lastElement = nums[i];
+        }
+
+        return -1;
+    }
+    /**
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     */
+    public int singleNonDuplicateBruteII(int[] nums) {
         int n = nums.length;
 
         for (int i = 0; i < n; i++) {
@@ -67,11 +96,15 @@ public class SingleElementInSortedArray_8 {
         int[] nums = {1, 1, 2, 2, 3, 3, 4, 5, 5, 6, 6};
 
         System.out.print("Single element in the sorted array is(BruteI): ");
-        int singleNonDuplicateBrute = solver.singleNonDuplicateBruteI(nums);
-        System.out.println(singleNonDuplicateBrute);
+        int singleNonDuplicateBruteM1 = solver.singleNonDuplicateBruteI(nums);
+        System.out.println(singleNonDuplicateBruteM1);
+
+        System.out.print("Single element in the sorted array is(BruteII): ");
+        int singleNonDuplicateBruteM2 = solver.singleNonDuplicateBruteII(nums.clone());
+        System.out.println(singleNonDuplicateBruteM2);
 
         System.out.print("Single element in the sorted array is(Optimal): ");
-        int singleNonDuplicateOptimal = solver.singleNonDuplicateOptimal(nums);
+        int singleNonDuplicateOptimal = solver.singleNonDuplicateOptimal(nums.clone());
         System.out.println(singleNonDuplicateOptimal);
     }
 }
