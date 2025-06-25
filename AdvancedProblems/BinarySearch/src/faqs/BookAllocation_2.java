@@ -15,7 +15,7 @@ public class BookAllocation_2 {
 
         return new int[]{maxValue, sum};
     }
-    public int countPages(int[] books, int pages) {
+    public int countStudents(int[] books, int pages) {
         int n = books.length;
 
         int students = 1;
@@ -44,7 +44,7 @@ public class BookAllocation_2 {
         int sum = sumAndMax[1];
 
         for (int pages = maxValue; pages <= sum; pages++) {
-            if (countPages(books, pages) == students) {
+            if (countStudents(books, pages) == students) {
                 return pages;
             }
         }
@@ -67,7 +67,7 @@ public class BookAllocation_2 {
         while (low <= high) {
             int mid = low + (high - low) / 2;
 
-            if (countPages(books, mid) <= students) {
+            if (countStudents(books, mid) <= students) {
                 result = mid;
                 high = mid - 1;
             } else {
