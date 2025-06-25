@@ -103,7 +103,7 @@ public class MedianOf2SortedArrays_4 {
 
         int low = 0;
         int high = n1;
-        int left = (n1 + n2 + 1) / 2;
+        int left = (n1 + n2 + 1) / 2; // Number of elements required on the left side
 
         while (low <= high) {
             int mid1 = low + (high - low) / 2;
