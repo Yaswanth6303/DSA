@@ -50,7 +50,7 @@ public class MinimizeMaximumDistance_5 {
     }
     /**
      * Time Complexity: O(n log n + totalGasStations log n)
-     * Space Complexity: O(1)
+     * Space Complexity: O(n - 1) + O(n - 1)
      */
     public double minimiseMaxDistanceBetter(int[] positions, int totalGasStations) {
         int n = positions.length;
