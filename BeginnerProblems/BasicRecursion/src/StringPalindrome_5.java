@@ -1,8 +1,11 @@
 public class StringPalindrome_5 {
+    /**
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
+     */
     public boolean palindromeCheck(String s) {
         return isPalindrome(s, 0, s.length() - 1);
     }
-
     private boolean isPalindrome(String s, int left, int right) {
         if (left >= right) {
             return true;
