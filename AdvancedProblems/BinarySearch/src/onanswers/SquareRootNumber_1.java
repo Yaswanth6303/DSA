@@ -10,7 +10,7 @@ public class SquareRootNumber_1 {
 
         for (int i = 1; i <= n; i++) {
             if (i * i <= n) result = i;
-            else break;;
+            else break;
         }
 
         return result;
