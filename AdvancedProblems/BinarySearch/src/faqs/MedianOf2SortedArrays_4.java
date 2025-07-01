@@ -99,6 +99,7 @@ public class MedianOf2SortedArrays_4 {
         int n2 = nums2.length;
         int n = n1 + n2;
 
+        // First array should be small and second array should be large
         if (n1 > n2) return medianOptimal(nums2, nums1);
 
         int low = 0;
