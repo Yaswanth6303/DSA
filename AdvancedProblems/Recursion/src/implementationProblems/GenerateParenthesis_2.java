@@ -14,6 +14,7 @@ public class GenerateParenthesis_2 {
         return result;
     }
     public void generate(int open, int close, int n, String currentString, List<String> result) {
+        if (open > n) return;
         if (open == close && open + close == 2 * n) {
             result.add(currentString);
             return;
