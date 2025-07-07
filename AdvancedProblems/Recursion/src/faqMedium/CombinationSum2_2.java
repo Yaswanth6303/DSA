@@ -16,20 +16,20 @@ public class CombinationSum2_2 {
         return result;
     }
 
-    private void backtrack(int start, int[] candidates, int target, List<Integer> current, List<List<Integer>> result) {
-        if (target == 0) {
+    private void backtrack(int index, int[] candidates, int sum, List<Integer> current, List<List<Integer>> result) {
+        if (sum == 0) {
             result.add(new ArrayList<>(current)); // Found a valid combination
             return;
         }
 
-        for (int i = start; i < candidates.length; i++) {
+        for (int i = index; i < candidates.length; i++) {
             // Skip duplicates at the same level
-            if (i > start && candidates[i] == candidates[i - 1]) continue;
+            if (i > index && candidates[i] == candidates[i - 1]) continue;
 
-            if (candidates[i] > target) break; // No point in continuing
+            if (candidates[i] > sum) break; // No point in continuing
 
             current.add(candidates[i]);
-            backtrack(i + 1, candidates, target - candidates[i], current, result); // move to next index
+            backtrack(i + 1, candidates, sum - candidates[i], current, result); // move to next index
             current.remove(current.size() - 1); // backtrack
         }
     }
