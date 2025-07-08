@@ -33,6 +33,27 @@ public class CombinationSum2_2 {
             current.remove(current.size() - 1); // backtrack
         }
     }
+    public void backtrack1(int index, int[] candidates, int sum, List<Integer> currentList, List<List<Integer>> result) {
+        if(sum == 0) {
+            result.add(new ArrayList<>(currentList));
+            return;
+        }
+
+        if(sum < 0 || index == candidates.length) {
+            return;
+        }
+
+        currentList.add(candidates[index]);
+        backtrack(index + 1, candidates, sum - candidates[index], currentList, result);
+        currentList.remove(currentList.size() - 1);
+
+        for(int i = index + 1; i < candidates.length; i++) {
+            if(candidates[i] != candidates[index]) {
+                backtrack(i, candidates, sum, currentList, result);
+                break;
+            }
+        }
+    }
 
     public static void main(String[] args) {
         CombinationSum2_2 solver = new CombinationSum2_2();
