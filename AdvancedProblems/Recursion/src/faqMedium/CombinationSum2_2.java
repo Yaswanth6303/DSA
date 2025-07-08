@@ -50,7 +50,7 @@ public class CombinationSum2_2 {
         for(int i = index + 1; i < candidates.length; i++) {
             if(candidates[i] != candidates[index]) {
                 backtrack(i, candidates, sum, currentList, result);
-                break;
+                return;
             }
         }
     }
