@@ -26,6 +26,25 @@ public class Subset2_5  {
         }
     }
 
+    private void generateSubsets1(int index, int[] nums, List<Integer> currentSubset, List<List<Integer>> result) {
+        if (index == nums.length) {
+            result.add(new ArrayList<>(currentSubset));
+            return;
+        }
+
+        currentSubset.add(nums[index]);
+        generateSubsets1(index + 1, nums, currentSubset, result);
+        currentSubset.remove(currentSubset.size() - 1);
+
+        for (int i = index + 1; i < nums.length; i++) {
+            if (nums[i] != nums[index]) {
+                generateSubsets1(i, nums, currentSubset, result);
+            }
+        }
+
+        generateSubsets1(nums.length, nums, currentSubset, result);
+    }
+
     public static void main(String[] args) {
         Subset2_5 generator = new Subset2_5();
         int[] nums = {1, 2, 2};
