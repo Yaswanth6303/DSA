@@ -39,6 +39,7 @@ public class Subset2_5  {
         for (int i = index + 1; i < nums.length; i++) {
             if (nums[i] != nums[index]) {
                 generateSubsets1(i, nums, currentSubset, result);
+                return;
             }
         }
 
