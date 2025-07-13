@@ -1,3 +1,5 @@
+package java_basics;
+
 import java.util.Scanner;
 
 public class ExceptionHandling_10 {
