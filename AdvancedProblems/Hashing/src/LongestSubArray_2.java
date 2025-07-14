@@ -66,7 +66,7 @@ public class LongestSubArray_2 {
      */
     public static int longestSubArrayBruteM3(int[] nums, int target) {
         int n = nums.length;
-        int maxLen = 0;
+        int maxLength = 0;
         int start = -1, end = -1;
 
         for (int i = 0; i < n; i++) {
@@ -76,8 +76,8 @@ public class LongestSubArray_2 {
                     sum += nums[k];
                 }
 
-                if (sum == target && (j - i + 1 > maxLen)) {
-                    maxLen = j - i + 1;
+                if (sum == target && (j - i + 1 > maxLength)) {
+                    maxLength = j - i + 1;
                     start = i;
                     end = j;
                 }
@@ -88,7 +88,7 @@ public class LongestSubArray_2 {
             printArray(nums, start, end);
         }
 
-        return maxLen;
+        return maxLength;
     }
 
     /**
@@ -120,17 +120,19 @@ public class LongestSubArray_2 {
      */
     public int longestSubArrayOptimal1(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();
-        int sum = 0, maxLen = 0;
+        int sum = 0, maxLength = 0;
 
         for (int i = 0; i < nums.length; i++) {
             sum += nums[i];
 
             if (sum == target) {
-                maxLen = i + 1;
+                maxLength = i + 1;
             }
 
-            if (map.containsKey(sum - target)) {
-                maxLen = Math.max(maxLen, i - map.get(sum - target));
+            int remainder = sum - target;
+
+            if (map.containsKey(remainder)) {
+                maxLength = Math.max(maxLength, i - map.get(remainder));
             }
 
             if (!map.containsKey(sum)) {
@@ -138,7 +140,7 @@ public class LongestSubArray_2 {
             }
         }
 
-        return maxLen;
+        return maxLength;
     }
 
     /**
@@ -147,24 +149,28 @@ public class LongestSubArray_2 {
      * Space Complexity: O(1)
      */
     public int longestSubArrayOptimal2(int[] nums, int target) {
-        int i = 0, j = 0, sum = 0, maxLen = 0;
+        int n = nums.length;
+        int longest = 0;
 
-        while (j < nums.length) {
-            sum += nums[j];
+        int sum = 0;
+        int j = 0;
 
-            while (sum > target) {
-                sum -= nums[i];
-                i++;
+        for (int i = 0; i < n; i++) {
+            sum += nums[i];
+
+            // Shrink the window until sum <= target
+            while (sum > target && j <= i) {
+                sum -= nums[j];
+                j++;
             }
 
+            // Check if current window equals target
             if (sum == target) {
-                maxLen = Math.max(maxLen, j - i + 1);
+                longest = Math.max(longest, i - j + 1);
             }
-
-            j++;
         }
 
-        return maxLen;
+        return longest;
     }
 
     public static void main(String[] args) {
