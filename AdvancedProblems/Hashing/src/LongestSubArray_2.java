@@ -2,11 +2,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LongestSubArray_2 {
+
+    public static void printArray(int[] nums, int startIndex, int endIndex) {
+        for (int i = startIndex; i <= endIndex; i++) {
+            System.out.print(nums[i] + " ");
+        }
+        System.out.println();
+    }
+
     /**
+     * Brute M1 - Just return longest length
      * Time Complexity: O(n^3)
      * Space Complexity: O(1)
      */
-    public int longestSubArrayBrute(int[] nums, int target) {
+    public int longestSubArrayBruteM1(int[] nums, int target) {
         int n = nums.length;
         int maxLength = 0;
 
@@ -16,7 +25,6 @@ public class LongestSubArray_2 {
                 for (int k = i; k <= j; k++) {
                     sum += nums[k];
                 }
-
                 if (sum == target) {
                     maxLength = Math.max(maxLength, j - i + 1);
                 }
@@ -25,7 +33,66 @@ public class LongestSubArray_2 {
 
         return maxLength;
     }
+
     /**
+     * Brute M2 - Print all subarrays with sum = target
+     * Time Complexity: O(n^3)
+     * Space Complexity: O(1)
+     */
+    public static int longestSubArrayBruteM2(int[] nums, int target) {
+        int n = nums.length;
+        int longest = 0;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                int sum = 0;
+                for (int k = i; k <= j; k++) {
+                    sum += nums[k];
+                }
+                if (sum == target) {
+                    printArray(nums, i, j);
+                    longest = Math.max(longest, j - i + 1);
+                }
+            }
+        }
+
+        return longest;
+    }
+
+    /**
+     * Brute M3 - Print only longest subarray with sum = target
+     * Time Complexity: O(n^3)
+     * Space Complexity: O(1)
+     */
+    public static int longestSubArrayBruteM3(int[] nums, int target) {
+        int n = nums.length;
+        int maxLen = 0;
+        int start = -1, end = -1;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                int sum = 0;
+                for (int k = i; k <= j; k++) {
+                    sum += nums[k];
+                }
+
+                if (sum == target && (j - i + 1 > maxLen)) {
+                    maxLen = j - i + 1;
+                    start = i;
+                    end = j;
+                }
+            }
+        }
+
+        if (start != -1 && end != -1) {
+            printArray(nums, start, end);
+        }
+
+        return maxLen;
+    }
+
+    /**
+     * Better - prefix sum in O(n^2)
      * Time Complexity: O(n^2)
      * Space Complexity: O(1)
      */
@@ -37,99 +104,96 @@ public class LongestSubArray_2 {
             int sum = 0;
             for (int j = i; j < n; j++) {
                 sum += nums[j];
-
                 if (sum == target) {
-                    maxLength = Math.max(maxLength ,j - i + 1);
+                    maxLength = Math.max(maxLength, j - i + 1);
                 }
             }
         }
 
         return maxLength;
     }
+
     /**
+     * Optimal 1 - Works for positives + negatives
      * Time Complexity: O(n)
      * Space Complexity: O(n)
      */
-    // For Positives and Negatives
     public int longestSubArrayOptimal1(int[] nums, int target) {
-        int n = nums.length;
-        Map<Integer, Integer> mpp = new HashMap<>();
-        int sum = 0;
-        int maxLength = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        int sum = 0, maxLen = 0;
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < nums.length; i++) {
             sum += nums[i];
 
             if (sum == target) {
-                maxLength = Math.max(maxLength, i + 1); // i + 1 because 0 based indexing
+                maxLen = i + 1;
             }
 
-            int remainder = sum - target;
-            if (mpp.containsKey(remainder)) {
-                int length = i - mpp.get(remainder);
-                maxLength = Math.max(length, maxLength);
+            if (map.containsKey(sum - target)) {
+                maxLen = Math.max(maxLen, i - map.get(sum - target));
             }
 
-            if (!mpp.containsKey(sum)) { // To handle unique sum values
-                mpp.put(sum, i);
+            if (!map.containsKey(sum)) {
+                map.put(sum, i);
             }
         }
 
-        return maxLength;
+        return maxLen;
     }
+
     /**
+     * Optimal 2 - Only works for non-negative integers
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      */
     public int longestSubArrayOptimal2(int[] nums, int target) {
-        int n = nums.length;
-        int longest = 0;
+        int i = 0, j = 0, sum = 0, maxLen = 0;
 
-        int sum = 0;
-        int j = 0;
+        while (j < nums.length) {
+            sum += nums[j];
 
-        for (int i = 0; i < n; i++) {
-            sum += nums[i];
-
-            // Shrink the window until sum <= target
-            while (sum > target && j <= i) {
-                sum -= nums[j];
-                j++;
+            while (sum > target) {
+                sum -= nums[i];
+                i++;
             }
 
-            // Check if current window equals target
             if (sum == target) {
-                longest = Math.max(longest, i - j + 1);
+                maxLen = Math.max(maxLen, j - i + 1);
             }
+
+            j++;
         }
 
-        return longest;
+        return maxLen;
     }
 
     public static void main(String[] args) {
-        LongestSubArray_2 longestSubArray2 = new LongestSubArray_2();
+        LongestSubArray_2 solver = new LongestSubArray_2();
+
         int[] nums = {1, 2, 3, 1, 1, 1, 1, 4, 2, 3};
         int target = 3;
 
-        int longestSubArrayBrute = longestSubArray2.longestSubArrayBrute(nums, target);
-        System.out.print("Longest Sub-array Brute: ");
-        System.out.println(longestSubArrayBrute);
+        System.out.println("=== Brute Force M1 ===");
+        System.out.println("Longest Length: " + solver.longestSubArrayBruteM1(nums, target));
 
-        int longestSubArrayBetter = longestSubArray2.longestSubArrayBetter(nums, target);
-        System.out.print("Longest Sub-array Better: ");
-        System.out.println(longestSubArrayBetter);
+        System.out.println("\n=== Brute Force M2 (All Matching Subarrays) ===");
+        solver.longestSubArrayBruteM2(nums, target);
 
-        int longestSubArrayOptimalPosAndNeg = longestSubArray2.longestSubArrayOptimal1(nums, target);
-        System.out.print("Longest Sub-array Optimal (Positives and Negatives): ");
-        System.out.println(longestSubArrayOptimalPosAndNeg);
+        System.out.println("\n=== Brute Force M3 (Longest Matching Subarray) ===");
+        solver.longestSubArrayBruteM3(nums, target);
 
+        System.out.println("\n=== Better Approach ===");
+        System.out.println("Longest Length: " + solver.longestSubArrayBetter(nums, target));
+
+        System.out.println("\n=== Optimal 1 (Positives & Negatives) ===");
+        System.out.println("Longest Length: " + solver.longestSubArrayOptimal1(nums, target));
+
+        System.out.println("\n=== Optimal 2 (Only Positives) ===");
+        System.out.println("Longest Length: " + solver.longestSubArrayOptimal2(nums, target));
+
+        System.out.println("\n=== Edge Case: [2, 0, 0, 3] ===");
         int[] nums1 = {2, 0, 0, 3};
-        int longestSubArrayOptimalPosAndNeg_1 = longestSubArray2.longestSubArrayOptimal1(nums1, target);
-        System.out.print("Longest Sub-array Optimal (Positives and Negatives): ");
-        System.out.println(longestSubArrayOptimalPosAndNeg_1);
-
-        int longestSubArrayOptimalPos = longestSubArray2.longestSubArrayOptimal2(nums, target);
-        System.out.print("Longest Sub-array Optimal (Positives): ");
-        System.out.println(longestSubArrayOptimalPos);
+        System.out.println("Optimal 1: " + solver.longestSubArrayOptimal1(nums1, target));
+        System.out.println("Optimal 2: " + solver.longestSubArrayOptimal2(nums1, target));
     }
 }
