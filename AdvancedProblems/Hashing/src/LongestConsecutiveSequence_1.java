@@ -46,7 +46,7 @@ public class LongestConsecutiveSequence_1 {
 
         int longest = 1;
         int lastSmaller = Integer.MIN_VALUE;
-        int count = 0;
+        int count = 1;
 
         for(int i = 0; i < n; i++) {
             if(nums[i] - 1 == lastSmaller) {
