@@ -8,6 +8,7 @@ import java.util.List;
 
 public class NextPermutation_13 {
     /**
+     * Brute Force Method
      * Time Complexity: O(n * n!)
      * Space Complexity: O(n * n!)
      */
@@ -79,7 +80,9 @@ public class NextPermutation_13 {
         }
         return true;
     }
+
     /**
+     * Optimal Method
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      */
@@ -87,6 +90,7 @@ public class NextPermutation_13 {
         int n = nums.length;
         int pivot = -1;
 
+        // Step 1: Find pivot
         for (int i = n - 2; i >= 0; i--) {
             if (nums[i] < nums[i + 1]) {
                 pivot = i;
@@ -94,38 +98,45 @@ public class NextPermutation_13 {
             }
         }
 
-        if(pivot == -1) {
+        // Step 2: If no pivot, reverse entire array
+        if (pivot == -1) {
             reverse(nums, 0, n - 1);
             return;
         }
 
+        // Step 3: Find next greater element and swap
         for (int i = n - 1; i > pivot; i--) {
-            if (nums[i] > pivot) {
+            if (nums[i] > nums[pivot]) {
                 swap(nums, i, pivot);
                 break;
             }
         }
 
+        // Step 4: Reverse suffix
         reverse(nums, pivot + 1, n - 1);
-        return;
     }
+
     private void reverse(int[] nums, int startIndex, int endIndex) {
-        while(startIndex < endIndex) {
+        while (startIndex < endIndex) {
             swap(nums, startIndex, endIndex);
             startIndex++;
             endIndex--;
         }
     }
+
     public static void main(String[] args) {
         NextPermutation_13 solver = new NextPermutation_13();
 
         int[] nums = {1, 2, 3, 6, 5, 4};
-        solver.findNextPermutationBrute(nums);
-        System.out.print("Next Permutation Brute: ");
-        HelperMethods.printArray(nums);
 
-        solver.findNextPermutationOptimal(nums.clone());
+        int[] numsForBrute = nums.clone();
+        solver.findNextPermutationBrute(numsForBrute);
+        System.out.print("Next Permutation Brute: ");
+        HelperMethods.printArray(numsForBrute);
+
+        int[] numsForOptimal = nums.clone();
+        solver.findNextPermutationOptimal(numsForOptimal);
         System.out.print("Next Permutation Optimal: ");
-        HelperMethods.printArray(nums);
+        HelperMethods.printArray(numsForOptimal);
     }
 }
