@@ -63,7 +63,14 @@ public class CountSubArrays_3 {
             prefixSum += nums[i];
 
             int sumToRemove = prefixSum - target;
-            count += prefixMap.getOrDefault(sumToRemove, 0);
+
+            // count += prefixMap.getOrDefault(sumToRemove, 0);
+            // (Or)
+
+            if (prefixMap.containsKey(sumToRemove)) {
+                count += prefixMap.get(sumToRemove);
+            }
+
             prefixMap.put(prefixSum, prefixMap.getOrDefault(prefixSum, 0) + 1);
         }
         return count;
