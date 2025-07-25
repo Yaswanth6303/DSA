@@ -38,7 +38,7 @@ public class LongestConsecutiveSequence_1 {
      * Time Complexity: O(n) + O(n log n)
      * Space Complexity: O(1)
      */
-    public int longestConsecutiveSequenceBetter(int[] nums) {
+    public int longestConsecutiveSequenceBetter_1(int[] nums) {
         int n = nums.length;
 
         if(n == 0) return 0;
@@ -56,6 +56,33 @@ public class LongestConsecutiveSequence_1 {
                 count = 1;
                 lastSmaller = nums[i];
             }
+            longest = Math.max(longest, count);
+        }
+
+        return longest;
+    }
+    /**
+     * Time Complexity: O(n) + O(n log n)
+     * Space Complexity: O(1)
+     */
+    public int longestConsecutiveSequenceBetter_2(int[] nums) {
+        int n = nums.length;
+
+        if (n == 0) return 0;
+
+        Arrays.sort(nums);
+        int longest = 1;
+        int count = 1;
+
+        for(int i = 0; i < n; i++) {
+            if (nums[i] == nums[i - 1]) continue;
+
+            if (nums[i] == nums[i - 1] + 1) {
+                count++;
+            } else {
+                count = 1;
+            }
+
             longest = Math.max(longest, count);
         }
 
@@ -99,9 +126,13 @@ public class LongestConsecutiveSequence_1 {
         System.out.print("Longest Sequence Brute: ");
         System.out.println(longestBrute);
 
-        int longestBetter = solver.longestConsecutiveSequenceBetter(nums.clone());
-        System.out.print("Longest Sequence Better: ");
-        System.out.println(longestBetter);
+        int longestBetter_1 = solver.longestConsecutiveSequenceBetter_1(nums.clone());
+        System.out.print("Longest Sequence Better_1: ");
+        System.out.println(longestBetter_1);
+
+        int longestBetter_2 = solver.longestConsecutiveSequenceBetter_1(nums.clone());
+        System.out.print("Longest Sequence Better_2: ");
+        System.out.println(longestBetter_2);
 
         int longestOptimal = solver.longestConsecutiveSequenceOptimal(nums.clone());
         System.out.print("Longest Sequence Optimal: ");
