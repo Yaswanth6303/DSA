@@ -41,7 +41,7 @@ public class MajorityElement_2 {
      * Time Complexity: O(n)
      * Space Complexity: O(n)
      */
-    public List<Integer> majorityElementTwoBetter(int[] nums) {
+    public List<Integer> majorityElementTwoBetter_1(int[] nums) {
         int n = nums.length;
         List<Integer> result = new ArrayList<>();
         Map<Integer, Integer> mpp = new HashMap<>();
@@ -64,6 +64,34 @@ public class MajorityElement_2 {
         }
 
         return result;
+    }
+    /**
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
+     */
+    public static List<Integer> majorityElementTwoBetter_2(int[] nums) {
+        int n = nums.length;
+
+        List<Integer> majorityList = new ArrayList<>();
+
+        Map<Integer, Integer> mpp = new HashMap<>();
+
+        for(int i = 0; i < n; i++) {
+            mpp.put(nums[i], mpp.getOrDefault(nums[i], 0) + 1);
+        }
+
+        for(Map.Entry<Integer, Integer> entry : mpp.entrySet()) {
+            int key = entry.getKey();
+            int value = entry.getValue();
+
+            if(value > n / 3) {
+                majorityList.add(key);
+            }
+
+            if(majorityList.size() == 2) break;
+        }
+
+        return majorityList;
     }
     /**
      * Time Complexity: O(n)
@@ -119,9 +147,13 @@ public class MajorityElement_2 {
         List<Integer> majorityElementsBrute = majorityElement2.majorityElementTwoBrute(nums);
         HelperMethods.printList(majorityElementsBrute);
 
-        System.out.print("Majority Element Better: ");
-        List<Integer> majorityElementsBetter = majorityElement2.majorityElementTwoBetter(nums.clone());
-        HelperMethods.printList(majorityElementsBetter);
+        System.out.print("Majority Element Better_1: ");
+        List<Integer> majorityElementsBetter_1 = majorityElement2.majorityElementTwoBetter_1(nums.clone());
+        HelperMethods.printList(majorityElementsBetter_1);
+
+        System.out.print("Majority Element Better_2: ");
+        List<Integer> majorityElementsBetter_2 = majorityElement2.majorityElementTwoBetter_2(nums.clone());
+        HelperMethods.printList(majorityElementsBetter_2);
 
         System.out.print("Majority Element Optimal: ");
         List<Integer> majorityElementsOptimal = majorityElement2.majorityElementTwoOptimal(nums.clone());
