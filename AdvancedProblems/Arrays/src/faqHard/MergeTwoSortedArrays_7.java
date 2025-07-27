@@ -95,7 +95,7 @@ public class MergeTwoSortedArrays_7 {
      * Space Complexity: O(1)
      */
     // Gap Method (Shell-Sort style)
-    public void mergeOptimal2(int[] nums1, int n1, int[] nums2, int n2) {
+    public void mergeOptimal2_1(int[] nums1, int n1, int[] nums2, int n2) {
         int len = n1 + n2;
         int gap = (len / 2) + (len % 2);
 
@@ -131,6 +131,49 @@ public class MergeTwoSortedArrays_7 {
         }
 
         // Finally copy nums2 into nums1
+        for (int i = 0; i < n2; i++) {
+            nums1[n1 + i] = nums2[i];
+        }
+    }
+
+    public void mergeOptimal2_2(int[] nums1, int n1, int[] nums2, int n2) {
+        int length = n1 + n2;
+        int gap = (length / 2) + (length % 2);
+
+        while (gap > 0) {
+            int left = 0;
+            int right = gap;
+
+            while (right < n1 + n2) {
+                // Case 1: both pointers in nums1
+                if (left < n1 && right < n1) {
+                    if (nums1[left] > nums1[right]) {
+                        swapIfGreater(nums1, nums1, left, right);
+                    }
+                }
+
+                // Case 2: left in nums1, right in nums2
+                else if (left < n1 && right >= n1) {
+                    if (nums1[left] > nums2[right - n1]) {
+                        swapIfGreater(nums1, nums2, left, right - n1);
+                    }
+                }
+
+                // Case 3: both pointers in nums2
+                else {
+                    if (nums2[left - n1] > nums2[right - n1]) {
+                        swapIfGreater(nums2, nums2, left - n1, right - n1);
+                    }
+                }
+
+                left++;
+                right++;
+            }
+
+            if (gap == 1) break;
+            gap = (gap / 2) + (gap % 2);
+        }
+
         for (int i = 0; i < n2; i++) {
             nums1[n1 + i] = nums2[i];
         }
@@ -174,7 +217,7 @@ public class MergeTwoSortedArrays_7 {
         System.out.println("Before:");
         System.out.println("nums5: " + Arrays.toString(input5));
         System.out.println("nums6: " + Arrays.toString(nums6));
-        solver.mergeOptimal2(nums5, input5.length, nums6, nums6.length);
+        solver.mergeOptimal2_1(nums5, input5.length, nums6, nums6.length);
         System.out.println("After:");
         System.out.println("nums5: " + Arrays.toString(nums5));
     }
