@@ -95,8 +95,8 @@ public class MergeTwoSortedArrays_7 {
      * Space Complexity: O(1)
      */
     // Gap Method (Shell-Sort style)
-    public void mergeOptimal2(int[] nums1, int m, int[] nums2, int n) {
-        int len = m + n;
+    public void mergeOptimal2(int[] nums1, int n1, int[] nums2, int n2) {
+        int len = n1 + n2;
         int gap = (len / 2) + (len % 2);
 
         while (gap > 0) {
@@ -104,21 +104,21 @@ public class MergeTwoSortedArrays_7 {
 
             while (right < len) {
                 // Case 1: both in nums1
-                if (left < m && right < m) {
+                if (left < n1 && right < n1) {
                     if (nums1[left] > nums1[right]) {
                         swapIfGreater(nums1, nums1, left, right);
                     }
                 }
                 // Case 2: left in nums1, right in nums2
-                else if (left < m && right >= m) {
-                    if (nums1[left] > nums2[right - m]) {
-                        swapIfGreater(nums1, nums2, left, right - m);
+                else if (left < n1 && right >= n1) {
+                    if (nums1[left] > nums2[right - n1]) {
+                        swapIfGreater(nums1, nums2, left, right - n1);
                     }
                 }
                 // Case 3: both in nums2
-                else if (left >= m) {
-                    if (nums2[left - m] > nums2[right - m]) {
-                        swapIfGreater(nums2, nums2, left - m, right - m);
+                else if (left >= n1) {
+                    if (nums2[left - n1] > nums2[right - n1]) {
+                        swapIfGreater(nums2, nums2, left - n1, right - n1);
                     }
                 }
 
@@ -131,8 +131,8 @@ public class MergeTwoSortedArrays_7 {
         }
 
         // Finally copy nums2 into nums1
-        for (int i = 0; i < n; i++) {
-            nums1[m + i] = nums2[i];
+        for (int i = 0; i < n2; i++) {
+            nums1[n1 + i] = nums2[i];
         }
     }
 
@@ -143,14 +143,14 @@ public class MergeTwoSortedArrays_7 {
         int[] input1 = {1, 3, 5, 7};
         int[] nums2 = {0, 2, 6, 8, 9};
         System.arraycopy(input1, 0, nums1, 0, input1.length);
-        int m = input1.length;
-        int n = nums2.length;
+        int n1 = input1.length;
+        int n2 = nums2.length;
 
         System.out.println("Brute Force Merge:");
         System.out.println("Before:");
         System.out.println("nums1: " + Arrays.toString(input1));
         System.out.println("nums2: " + Arrays.toString(nums2));
-        solver.mergeBrute(nums1, m, nums2, n);
+        solver.mergeBrute(nums1, n1, nums2, n2);
         System.out.println("After:");
         System.out.println("nums1: " + Arrays.toString(nums1));
 
