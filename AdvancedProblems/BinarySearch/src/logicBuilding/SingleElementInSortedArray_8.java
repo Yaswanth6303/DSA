@@ -5,7 +5,7 @@ public class SingleElementInSortedArray_8 {
      * Time Complexity: O(n^2)
      * Space Complexity: O(1)
      */
-    public int singleNonDuplicateBruteI(int[] nums) {
+    public int singleNonDuplicateBrute(int[] nums) {
         int n = nums.length;
         int lastElement = Integer.MIN_VALUE;
 
@@ -34,7 +34,7 @@ public class SingleElementInSortedArray_8 {
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      */
-    public int singleNonDuplicateBruteII(int[] nums) {
+    public int singleNonDuplicateBetterI(int[] nums) {
         int n = nums.length;
 
         for (int i = 0; i < n; i++) {
@@ -54,6 +54,19 @@ public class SingleElementInSortedArray_8 {
         }
 
         return -1;
+    }    /**
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     */
+    public int singleNonDuplicateBetterII(int[] nums) {
+        int n = nums.length;
+
+        int singleNumber = 0;
+        for (int i = 0; i < n; i++) {
+            singleNumber = singleNumber ^ nums[i];
+        }
+
+        return singleNumber;
     }
     /**
      * Time Complexity: O(log n)
@@ -95,12 +108,16 @@ public class SingleElementInSortedArray_8 {
         SingleElementInSortedArray_8 solver = new SingleElementInSortedArray_8();
         int[] nums = {1, 1, 2, 2, 3, 3, 4, 5, 5, 6, 6};
 
-        System.out.print("Single element in the sorted array is(BruteI): ");
-        int singleNonDuplicateBruteM1 = solver.singleNonDuplicateBruteI(nums);
+        System.out.print("Single element in the sorted array is(Brute): ");
+        int singleNonDuplicateBrute = solver.singleNonDuplicateBrute(nums);
+        System.out.println(singleNonDuplicateBrute);
+
+        System.out.print("Single element in the sorted array is(BetterI): ");
+        int singleNonDuplicateBruteM1 = solver.singleNonDuplicateBetterI(nums.clone());
         System.out.println(singleNonDuplicateBruteM1);
 
-        System.out.print("Single element in the sorted array is(BruteII): ");
-        int singleNonDuplicateBruteM2 = solver.singleNonDuplicateBruteII(nums.clone());
+        System.out.print("Single element in the sorted array is(BetterII): ");
+        int singleNonDuplicateBruteM2 = solver.singleNonDuplicateBetterII(nums.clone());
         System.out.println(singleNonDuplicateBruteM2);
 
         System.out.print("Single element in the sorted array is(Optimal): ");
