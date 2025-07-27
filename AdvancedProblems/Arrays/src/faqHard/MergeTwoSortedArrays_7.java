@@ -35,7 +35,7 @@ public class MergeTwoSortedArrays_7 {
      * Time Complexity: O(min(M, N)) + O(M x log M) + O(N x log N)
      * Space Complexity: O(1)
      */
-    public void mergeOptimal1(int[] nums1, int m, int[] nums2, int n) {
+    public void mergeOptimal1_M1(int[] nums1, int m, int[] nums2, int n) {
         int left = m - 1;
         int right = 0;
         while (left >= 0 && right < n) {
@@ -55,6 +55,29 @@ public class MergeTwoSortedArrays_7 {
 
         for (int i = 0; i < n; i++) {
             nums1[m + i] = nums2[i];
+        }
+    }
+
+    public void mergeOptimal1_M2(int[] nums1, int n1, int[] nums2, int n2) {
+        int left = n1 - n2 - 1;
+        int right = 0;
+        while (left >= 0 && right < n2) {
+            if (nums1[left] > nums2[right]) {
+                int temp = nums1[left];
+                nums1[left] = nums2[right];
+                nums2[right] = temp;
+                left--;
+                right++;
+            } else {
+                break;
+            }
+        }
+
+        Arrays.sort(nums1, 0, n1 - n2);
+        Arrays.sort(nums2);
+
+        for (int i = 0; i < n2; i++) {
+            nums1[n1 - n2 + i] = nums2[i];
         }
     }
 
@@ -135,11 +158,11 @@ public class MergeTwoSortedArrays_7 {
         int[] input3 = {1, 3, 5, 7};
         int[] nums4 = {0, 2, 6, 8, 9};
         System.arraycopy(input3, 0, nums3, 0, input3.length);
-        System.out.println("Optimal Merge 1 (Swap + Sort):");
+        System.out.println("Optimal Merge_1 M1 (Swap + Sort):");
         System.out.println("Before:");
         System.out.println("nums3: " + Arrays.toString(input3));
         System.out.println("nums4: " + Arrays.toString(nums4));
-        solver.mergeOptimal1(nums3, input3.length, nums4, nums4.length);
+        solver.mergeOptimal1_M1(nums3, input3.length, nums4, nums4.length);
         System.out.println("After:");
         System.out.println("nums3: " + Arrays.toString(nums3));
 
