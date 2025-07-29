@@ -13,7 +13,7 @@ public class MinimumDaysMBouquets_5 {
 
         return new int[]{maxValue, minValue};
     }
-    public boolean possible(int[] nums, int day, int k, int m) {
+    public boolean isBloomed(int[] nums, int day, int k, int m) {
         int bloomedCount = 0;
         int numOfBouquets = 0;
 
@@ -43,7 +43,7 @@ public class MinimumDaysMBouquets_5 {
         int max = findMaxMin[0];
 
         for (int i = min; i < max; i++) {
-            if (possible(nums, i, k, m)) return i;
+            if (isBloomed(nums, i, k, m)) return i;
         }
 
         return -1;
@@ -65,7 +65,7 @@ public class MinimumDaysMBouquets_5 {
         while (low <= high) {
             int mid = low + (high - low) / 2;
 
-            if (possible(nums, mid, k, m)) {
+            if (isBloomed(nums, mid, k, m)) {
                 result = mid;
                 high = mid - 1;
             } else {
