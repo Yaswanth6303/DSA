@@ -4,9 +4,26 @@ import java.util.PriorityQueue;
 
 public class MinimizeMaximumDistance_5 {
     public double getSectionLength(int start, int end, int stationsInBetween) {
-        double distance = (double) (end - start) / (stationsInBetween + 1);
-        return distance;
+        return (double) (end - start) / (stationsInBetween + 1);
     }
+
+    // Extracted method to find the section with the maximum segment length
+    private int getIndexWithMaxSectionLength(int[] positions, int[] stationsPlaced) {
+        int maxIndex = -1;
+        double maxSection = -1;
+
+        for (int i = 0; i < positions.length - 1; i++) {
+            double sectionLength = getSectionLength(positions[i], positions[i + 1], stationsPlaced[i]);
+
+            if (sectionLength > maxSection) {
+                maxSection = sectionLength;
+                maxIndex = i;
+            }
+        }
+
+        return maxIndex;
+    }
+
     /**
      * Time Complexity: O(totalGasStations * n)
      * Space Complexity: O(n - 1)
@@ -16,18 +33,8 @@ public class MinimizeMaximumDistance_5 {
         int[] stationsPlaced = new int[n - 1];
 
         for (int gasStation = 1; gasStation <= totalGasStations; gasStation++) {
-            double maximumSection = -1;
-            int maximumIndex = -1;
-
-            for (int i = 0; i < n - 1; i++) {
-                double sectionLength = getSectionLength(positions[i], positions[i + 1], stationsPlaced[i]);
-
-                if (sectionLength > maximumSection) {
-                    maximumSection = sectionLength;
-                    maximumIndex = i;
-                }
-            }
-            stationsPlaced[maximumIndex]++;
+            int maxIndex = getIndexWithMaxSectionLength(positions, stationsPlaced);
+            stationsPlaced[maxIndex]++;
         }
 
         double maximumDistance = -1;
@@ -38,6 +45,7 @@ public class MinimizeMaximumDistance_5 {
 
         return maximumDistance;
     }
+
     // Helper class to represent a section with its current max distance and index
     static class Section {
         double maxDistance;
