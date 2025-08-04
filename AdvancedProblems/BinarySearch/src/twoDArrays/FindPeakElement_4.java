@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class FindPeakElement_4 {
     /**
-     * Time Complexity: O(n + m)
+     * Time Complexity: O(n * m)
      * Space Complexity: O(1)
      */
     public int[] findPeakGridBrute(int[][] matrix) {
