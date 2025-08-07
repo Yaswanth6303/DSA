@@ -1,27 +1,6 @@
 package fundamentalsSingleLL;
 
-class Node {
-    int data;
-    Node next;
-
-    public Node(int data, Node next) {
-        this.data = data;
-        this.next = next;
-    }
-
-    public Node(int data) {
-        this.data = data;
-        this.next = null;
-    }
-
-    public Node() {
-        this.data = 0;
-        this.next = null;
-    }
-}
-
 public class LinkedList {
-
     // Convert array to linked list
     Node convertArrToLL(int[] nums) {
         if (nums.length == 0) return null;
