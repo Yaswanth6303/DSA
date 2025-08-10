@@ -69,5 +69,9 @@ public class ReverseLinkedList_5 {
         Node l3 = new Node(1, new Node(3, new Node(2, new Node(5))));
         Node head2 = rll.reverseListOptimalIterative(l3);
         ll.printLinkedList(head2);
+
+        Node l4 = new Node(1, new Node(3, new Node(2, new Node(5))));
+        Node head3 = rll.reverseListOptimalIterative(l4);
+        ll.printLinkedList(head3);
     }
 }
