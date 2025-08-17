@@ -1,9 +1,9 @@
 package fundamentalsDoublyLL;
 
 public class DNode {
-    int data;
-    DNode next;
-    DNode prev;
+    public int data;
+    public DNode next;
+    public DNode prev;
 
     public DNode(int data, DNode next, DNode prev) {
         this.data = data;
