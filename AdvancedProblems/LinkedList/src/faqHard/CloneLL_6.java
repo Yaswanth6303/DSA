@@ -31,7 +31,7 @@ public class CloneLL_6 {
     // Brute-force using HashMap
     public Node copyRandomListBrute(Node head) {
         if (head == null)
-            return null;
+        return null;
 
         HashMap<Node, Node> mpp = new HashMap<>();
         Node current = head;
@@ -101,7 +101,7 @@ public class CloneLL_6 {
     // Optimal O(1) space solution
     public Node copyRandomListOptimal(Node head) {
         if (head == null)
-            return null;
+        return null;
 
         insertNodesInBetween(head);
         connectRandomPointers(head);
