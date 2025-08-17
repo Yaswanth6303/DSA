@@ -1,4 +1,4 @@
-package faqHard;
+package faqHard.flatteningLL_4;
 
 import java.util.ArrayList;
 import java.util.Collections;
