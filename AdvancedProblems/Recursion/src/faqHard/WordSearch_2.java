@@ -8,8 +8,10 @@ public class WordSearch_2 {
         // Try to start from every cell
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (backtrack(board, word, 0, i, j)) {
-                    return true;
+                if (board[i][j] == word.charAt(0)) {
+                    if (backtrack(board, word, 0, i, j)) {
+                        return true;
+                    }
                 }
             }
         }
