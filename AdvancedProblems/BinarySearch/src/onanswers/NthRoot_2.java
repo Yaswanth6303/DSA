@@ -74,6 +74,47 @@ public class NthRoot_2 {
 
         return -1;
     }
+
+    public long powerFunction(long base, int exponent, long limit) {
+        long result = 1;
+
+        while (exponent > 0) {
+            if (exponent % 2 == 1) {
+                result *= base;
+                if (result > limit) return limit + 1; // prevent overflow
+                exponent--;
+            } else {
+                base *= base;
+                if (base > limit) return limit + 1;
+                exponent /= 2;
+            }
+        }
+
+        return result;
+    }
+    /**
+     * Time Complexity: O(log(M) * log(N))
+     * Space Complexity: O(1)
+     */
+    public int nthRootOptimal3(int n, int m) {
+        int low = 1;
+        int high = m;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            long value = powerFunction(mid, n, m);
+
+            if (value == m) {
+                return mid;
+            } else if (value > m) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        return -1;
+    }
     public static void main(String[] args) {
         NthRoot_2 nthRoot2 = new NthRoot_2();
         int N = 3;
@@ -90,5 +131,9 @@ public class NthRoot_2 {
         System.out.print("NthRoot Value(Optimal2): ");
         int nthRootValueOptimal2 = nthRoot2.nthRootOptimal2(N, M);
         System.out.println(nthRootValueOptimal2);
+
+        System.out.print("NthRoot Value(Optimal3): ");
+        int nthRootValueOptimal3 = nthRoot2.nthRootOptimal3(N, M);
+        System.out.println(nthRootValueOptimal3);
     }
 }
