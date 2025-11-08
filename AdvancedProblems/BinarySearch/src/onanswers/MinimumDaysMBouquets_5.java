@@ -29,6 +29,24 @@ public class MinimumDaysMBouquets_5 {
 
         return numOfBouquets >= m;
     }
+    public boolean isBloomed_1(int[] nums, int day, int k, int m) {
+        int count = 0;
+        int numOfBouquets = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] <= day) {
+                count++;
+                if (count == k) {
+                    numOfBouquets++;
+                    count = 0;
+                }
+            } else {
+                count = 0;
+            }
+        }
+
+        return numOfBouquets >= m;
+    }
     /**
      * Time Complexity: O((maximum - minimum + 1) * N)
      * Space Complexity: O(1)
