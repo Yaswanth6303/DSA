@@ -1,10 +1,10 @@
-package constantWindow;
+package longestandsmallestwindowproblems;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LongestSubstringUniqueCharacters_2 {
+public class LongestSubstringUniqueCharacters_1 {
     /**
      * Time Complexity: O(n^2) due to the nested for loops, where n is the length of the string.
      * The outer loop iterates n times, and the inner loop iterates up to n times in the worst case.
@@ -36,7 +36,6 @@ public class LongestSubstringUniqueCharacters_2 {
      * HashMap operations take O(1) time on average.
      * Space Complexity:O(n) in the worst case because the HashMap `mpp` can store up to n characters
      * from the string.
-     *
      */
     public int longestNonRepeatingSubstringBetter(String str) {
         int n = str.length();
@@ -93,7 +92,7 @@ public class LongestSubstringUniqueCharacters_2 {
         return maxLength;
     }
     static void main() {
-        LongestSubstringUniqueCharacters_2 sol = new LongestSubstringUniqueCharacters_2();
+        LongestSubstringUniqueCharacters_1 sol = new LongestSubstringUniqueCharacters_1();
         String str = "abcddabac";
         System.out.println("Longest Substring (Brute): " + sol.longestNonRepeatingSubstringBrute(str));
         System.out.println("Longest Substring (Better): " + sol.longestNonRepeatingSubstringBetter(str));
