@@ -15,7 +15,7 @@ public class BookAllocation_2 {
 
         return new int[]{maxValue, sum};
     }
-    public int countStudents(int[] books, int pages) {
+    public boolean countStudents(int[] books, int pages, int m) {
         int n = books.length;
 
         int students = 1;
@@ -27,10 +27,13 @@ public class BookAllocation_2 {
             } else {
                 students++;
                 pagesToStudent = books[i];
+                if (students > m) {
+                    return false;
+                }
             }
         }
 
-        return students;
+        return true;
     }
     /**
      * Time Complexity: O(N * (sum-max))
@@ -44,7 +47,7 @@ public class BookAllocation_2 {
         int sum = sumAndMax[1];
 
         for (int pages = maxValue; pages <= sum; pages++) {
-            if (countStudents(books, pages) == students) {
+            if (countStudents(books, pages, students)) {
                 return pages;
             }
         }
@@ -67,7 +70,7 @@ public class BookAllocation_2 {
         while (low <= high) {
             int mid = low + (high - low) / 2;
 
-            if (countStudents(books, mid) <= students) {
+            if (countStudents(books, mid, students)) {
                 result = mid;
                 high = mid - 1;
             } else {
@@ -77,7 +80,7 @@ public class BookAllocation_2 {
 
         return result;
     }
-    public static void main(String[] args) {
+     static void main(String[] args) {
         BookAllocation_2 solver = new BookAllocation_2();
         int[] books = {25, 46, 28, 49, 24};
         int students = 4;
