@@ -5,12 +5,37 @@ public class FindPeakElement_3 {
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      */
-    public int findPeakElementBrute(int[] nums) {
+    public int findPeakElementBrute_1(int[] nums) {
         int n = nums.length;
 
         for (int i = 0; i < n; i++) {
             if ((i == 0 || nums[i] > nums[i - 1]) && (i == n - 1 || nums[i] > nums[i + 1])) {
                 return i;
+            }
+        }
+
+        return -1;
+    }
+    /**
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     */
+    public int findPeakElementBrute_2(int[] nums) {
+        int n = nums.length;
+
+        for (int i = 0; i < n; i++) {
+            if (i == 0) {
+                if (nums[i] > nums[i + 1]) {
+                    return i;
+                }
+            } else if (i == n - 1) {
+                if (nums[i] > nums[i - 1]) {
+                    return i;
+                }
+            } else {
+                if(nums[i - 1] < nums[i] && nums[i] > nums[i + 1]) {
+                    return i;
+                }
             }
         }
 
@@ -51,10 +76,12 @@ public class FindPeakElement_3 {
 
         int[] nums = {1, 2, 3, 4, 5, 6, 7, 8, 5, 1};
 
-        int bruteIndex = finder.findPeakElementBrute(nums);
+        int bruteIndex_1 = finder.findPeakElementBrute_1(nums);
+        int bruteIndex_2 = finder.findPeakElementBrute_2(nums);
         int optimalIndex = finder.findPeakElementOptimal(nums);
 
-        System.out.println("Brute Force Peak Index: " + bruteIndex + " (Value: " + nums[bruteIndex] + ")");
+        System.out.println("Brute Force 1 Peak Index: " + bruteIndex_1 + " (Value: " + nums[bruteIndex_1] + ")");
+        System.out.println("Brute Force 2 Peak Index: " + bruteIndex_2 + " (Value: " + nums[bruteIndex_2] + ")");
         System.out.println("Optimal Peak Index: " + optimalIndex + " (Value: " + nums[optimalIndex] + ")");
     }
 }
