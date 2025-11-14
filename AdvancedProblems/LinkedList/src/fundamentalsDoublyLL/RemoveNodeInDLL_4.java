@@ -19,8 +19,8 @@ public class RemoveNodeInDLL_4 {
         node.next = null;
     }
 
-    public DNode deleteGivenNode_2(DNode head, int node) {
-        if (head == null) return null;
+    public void deleteGivenNode_2(DNode head, int node) {
+        if (head == null) return;
 
         DNode current = head;
 
@@ -30,7 +30,7 @@ public class RemoveNodeInDLL_4 {
         }
 
         // If no such node exists, return head unchanged
-        if (current == null) return head;
+        if (current == null) return;
 
         // Case 1: Deleting the head node
         if (current == head) {
@@ -39,7 +39,7 @@ public class RemoveNodeInDLL_4 {
                 newHead.prev = null;
             }
             current.next = null; // clear link
-            return newHead;
+            return;
         }
 
         // Case 2: Middle or tail node
@@ -54,8 +54,6 @@ public class RemoveNodeInDLL_4 {
         // Clear links for safety
         current.prev = null;
         current.next = null;
-
-        return head;
     }
 
     public static void main(String[] args) {
