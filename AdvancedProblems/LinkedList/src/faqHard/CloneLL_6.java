@@ -82,20 +82,23 @@ public class CloneLL_6 {
 
     // Step 3: Separate the copy list from the original list
     public Node getDeepCopyList(Node head) {
+        Node dummy = new Node(-1);
+        Node copyTail = dummy;
         Node current = head;
-        Node dummyNode = new Node(-1);
-        Node copyIter = dummyNode;
-
+    
         while (current != null) {
-            Node copyNode = current.next;
-            copyIter.next = copyNode;
-            copyIter = copyNode;
-
-            current.next = copyNode.next; // restore original
-            current = current.next;
+          Node copyNode = current.next;
+          Node nextOriginal = copyNode.next;
+    
+          copyTail.next = copyNode;
+          copyTail = copyNode;
+    
+          current.next = nextOriginal;
+    
+          current = nextOriginal;
         }
-
-        return dummyNode.next;
+    
+        return dummy.next;
     }
 
     // Optimal O(1) space solution
