@@ -7,9 +7,7 @@ public class DeleteAllOccurrencesKeyDLL_1 {
         DNode current = head;
 
         while (current != null) {
-            if (current.data != target) {
-                current = current.next;
-            } else {
+            if (current.data == target) {
                 if (current == head) {
                     head = current.next;
                 }
@@ -17,15 +15,12 @@ public class DeleteAllOccurrencesKeyDLL_1 {
                 DNode nextNode = current.next;
                 DNode prevNode = current.prev;
 
-                if (prevNode != null) {
-                    prevNode.next = nextNode;
-                }
-
-                if (nextNode != null) {
-                    nextNode.prev = prevNode;
-                }
+                if(prevNode != null) prevNode.next = nextNode;
+                if(nextNode != null) nextNode.prev = prevNode;
 
                 current = nextNode;
+            } else {
+                current = current.next;
             }
         }
 
