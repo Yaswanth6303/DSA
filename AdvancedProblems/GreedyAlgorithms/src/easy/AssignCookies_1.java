@@ -26,9 +26,11 @@ public class AssignCookies_1 {
 
         return i;
     }
-    public static void main(String[] args) {
+    static void main(String[] args) {
+        AssignCookies_1 as = new AssignCookies_1();
         int[] students = {1, 5, 3, 3, 4};
         int[] cookies = {4, 2, 1, 2, 1, 3};
 
+        System.out.println(as.findMaximumCookieStudents(students, cookies));
     }
 }
