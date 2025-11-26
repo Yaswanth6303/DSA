@@ -5,6 +5,37 @@ import java.util.TreeMap;
 
 public class JobSchedulingAlgorithm_2 {
     public int[] jobScheduling(int[][] jobs) {
+        int n = jobs.length;
+
+        int maxDeadline = 0;
+        for (int[] job : jobs) {
+            maxDeadline = Math.max(maxDeadline, job[0]);
+        }
+
+        Arrays.sort(jobs, (a, b) -> b[2] - a[2]);
+
+        int countJobs = 0;
+        int totalProfit = 0;
+
+        int[] slot = new int[maxDeadline + 1];
+
+        for(int[] job : jobs) {
+            int deadline = job[1];
+            int profit = job[2];
+
+            for(int t = deadline; t > 0; t--) {
+                if(slot[t] == -1) {
+                    slot[t] = 1;
+                    countJobs++;
+                    totalProfit += profit;
+                    break;
+                }
+            }
+        }
+
+        return new int[]{countJobs, totalProfit};
+    }
+    public int[] jobSchedulingTreeMap(int[][] jobs) {
         // jobs[i] = {id, deadline, profit}
 
         int n = jobs.length;
@@ -46,7 +77,7 @@ public class JobSchedulingAlgorithm_2 {
     public static void main(String[] args) {
         JobSchedulingAlgorithm_2 jsa = new JobSchedulingAlgorithm_2();
         int[][] jobs = {{1, 4, 40}, {2, 1, 10}, {3, 1, 40}, {4, 1, 30}};
-        int[] result = jsa.jobScheduling(jobs);
+        int[] result = jsa.jobSchedulingTreeMap(jobs);
 
         System.out.println("Number of Jobs: " + result[0]);
         System.out.println("Maximum Profit: " + result[1]);
