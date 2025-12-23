@@ -84,6 +84,7 @@ public class LongestRepeatingCharacter_5 {
                 l++;
                 strLength = r - l + 1;
 
+                // Important step (Check for Max Frequency)
                 maxFrequency = 0;
                 for (int i = 0; i < 26; i++) {
                     maxFrequency = Math.max(hash[i], maxFrequency);
