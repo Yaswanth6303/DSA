@@ -1,7 +1,5 @@
 package substringProblems;
 
-import java.util.Arrays;
-
 public class NumberOfSubstrings_1 {
 
     /**
@@ -50,9 +48,7 @@ public class NumberOfSubstrings_1 {
         NumberOfSubstrings_1 obj = new NumberOfSubstrings_1();
         String s = "bbacba";
 
-        System.out.println("Brute Force Count: " +
-                obj.numberOfSubstringsBrute(s));
-        System.out.println("Optimal Count: " +
-                obj.numberOfSubstringsOptimal(s));
+        System.out.println("Brute Force Count: " + obj.numberOfSubstringsBrute(s));
+        System.out.println("Optimal Count: " + obj.numberOfSubstringsOptimal(s));
     }
 }
