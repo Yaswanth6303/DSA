@@ -1,3 +1,7 @@
+/**
+ * Time Complexity: O(1)
+ * Space Complexity: O(n)
+ */
 class StackLL {
     private Node head;
     private int size;
