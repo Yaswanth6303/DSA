@@ -48,8 +48,24 @@ class Stack {
         return stackArray[top];
     }
 
+    public boolean isFull() {
+        return top + 1 == capacity;
+    }
+
     public int size() {
         return top + 1;
+    }
+
+    public void displayElements() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+            return;
+        }
+
+        for (int i = 0; i <= top; i++) {
+            System.out.print(stackArray[i] + " ");
+        }
+        System.out.println();
     }
 }
 
