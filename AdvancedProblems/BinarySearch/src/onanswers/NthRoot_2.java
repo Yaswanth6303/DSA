@@ -115,6 +115,36 @@ public class NthRoot_2 {
 
         return -1;
     }
+
+    public int validRoot(int N, int M, int num) {
+        int val = 1;
+
+        for (int i = 0; i < N; i++) {
+            val *= num;
+            if (val > M) return 2;
+        }
+        if (val == M) return 1;
+        return 0;
+    }
+    /**
+     * Time Complexity: O(log(M) * N)
+     * Space Complexity: O(1)
+     */
+    public int nthRootOptimal4(int N, int M) {
+        int low = 0;
+        int high = M;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            int val = validRoot(N, M, mid);
+
+            if (val == 1) return mid;
+            else if (val == 2) high = mid - 1;
+            else low = mid + 1;
+        }
+
+        return -1;
+    }
     public static void main(String[] args) {
         NthRoot_2 nthRoot2 = new NthRoot_2();
         int N = 3;
@@ -135,5 +165,9 @@ public class NthRoot_2 {
         System.out.print("NthRoot Value(Optimal3): ");
         int nthRootValueOptimal3 = nthRoot2.nthRootOptimal3(N, M);
         System.out.println(nthRootValueOptimal3);
+
+        System.out.print("NthRoot Value(Optimal4): ");
+        int nthRootValueOptimal4 = nthRoot2.nthRootOptimal4(N, M);
+        System.out.println(nthRootValueOptimal4);
     }
 }
