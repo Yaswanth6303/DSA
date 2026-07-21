@@ -5,20 +5,21 @@ public class QuickSort_5 {
         int pivot = nums[low];
 
         while (i < j) {
-            while (i <= high - 1 && nums[i] <= pivot) i++;
-            while (j >= low + 1 && nums[j] > pivot) j--;
+            while (i < high && nums[i] <= pivot) i++;
+            while (j >= low && nums[j] > pivot) j--;
 
             if (i < j) {
-                int temp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = temp;
+                swap(nums, i, j);
             }
         }
 
-        int temp = nums[low];
-        nums[low] = nums[j];
-        nums[j] = temp;
+        swap(nums, low, j);
         return j;
+    }
+    public void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
     public void quickSortHelper(int[] nums, int low, int high) {
         if (low < high) {
@@ -33,7 +34,7 @@ public class QuickSort_5 {
     }
     public static void main(String[] args) {
         QuickSort_5 quickSort5 = new QuickSort_5();
-        int[] nums = {5, 2, 3, 4, 1};
+        int[] nums = {5, 1, 4, 3, 2};
         int[] sortedArrayMergeSort = quickSort5.quickSort(nums);
         System.out.print("Quick Sort: ");
         HelperMethods.printArray(sortedArrayMergeSort);
